@@ -5,7 +5,7 @@ import ScrollToTop from "./components/common/ScrollToTop.jsx";
 
 import Home from "./pages/Home.jsx";
 import Tours from "./pages/Tours.jsx";
-import TourDetails from "./pages/Tourdetails.jsx";
+import TourDetails from "./pages/TourDetails.jsx";
 import Destinations from "./pages/Destinations.jsx";
 import About from "./pages/About.jsx";
 import Gallery from "./pages/Gallery.jsx";
