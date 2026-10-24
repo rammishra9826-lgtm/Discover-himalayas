@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import TourDetails from "./pages/TourDetails.jsx";
+
 
 const tours = {
   "highway-to-heaven": {
