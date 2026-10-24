@@ -1,2142 +1,1566 @@
-
-
 .videoHero {
-
   position: relative;
-
   width: 100%;
-
   aspect-ratio: 16 / 9;
-
   overflow: hidden;
-
   margin: 0;
-
   padding: 0;
-
   background: #000;
-
   line-height: normal;
-
   isolation: isolate;
-
 }
-
-
 
 .heroVideo {
-
   position: absolute;
-
   inset: 0;
-
   display: block;
-
   width: 100%;
-
   height: 100%;
-
   object-fit: contain;
-
   object-position: center;
-
   margin: 0;
-
   padding: 0;
-
   border: 0;
-
   z-index: 0;
-
 }
-
-
 
 .videoText {
-
   position: absolute;
-
   inset: 0;
-
   z-index: 1;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   padding: 20px;
-
   text-align: center;
-
   color: #fff;
-
   pointer-events: none;
-
   opacity: 0;
-
   animation: firstText 20s infinite;
-
 }
-
-
 
 .videoTitle {
-
   margin: 0;
-
   max-width: 1000px;
-
   font-size: clamp(22px, 4.2vw, 58px);
-
   font-weight: 800;
-
   line-height: 1.15;
-
   letter-spacing: 0.06em;
-
   text-shadow: 0 3px 18px rgba(0, 0, 0, 0.9);
-
 }
-
-
 
 .videoSubtitle {
-
   margin: 14px 0 0;
-
   font-size: clamp(13px, 1.7vw, 22px);
-
   font-weight: 600;
-
   letter-spacing: 0.22em;
-
   text-shadow: 0 3px 14px rgba(0, 0, 0, 0.95);
-
 }
-
-
 
 .secondVideoText {
-
   opacity: 0;
-
   animation: secondText 20s infinite;
-
 }
-
-
 
 @keyframes firstText {
-
   0%, 3% {
-
     opacity: 0;
-
   }
-
-
 
   5%, 45% {
-
     opacity: 1;
-
   }
-
-
 
   50%, 100% {
-
     opacity: 0;
-
   }
-
 }
-
-
 
 @keyframes secondText {
-
   0%, 48% {
-
     opacity: 0;
-
   }
-
-
 
   53%, 95% {
-
     opacity: 1;
-
   }
-
-
 
   100% {
-
     opacity: 0;
-
   }
-
 }
-
-
 
 @media (max-width: 768px) {
-
   .videoText {
-
     padding: 12px;
-
   }
-
-
 
   .videoTitle {
-
     letter-spacing: 0.03em;
-
   }
-
-
 
   .videoSubtitle {
-
     margin-top: 8px;
-
     letter-spacing: 0.1em;
-
   }
-
 }
 
-
-
 @media (prefers-reduced-motion: reduce) {
-
   .videoText,
-
   .secondVideoText {
-
     animation: none;
-
   }
-
-
 
   .videoText {
-
     opacity: 1;
-
   }
-
-
 
   .secondVideoText {
-
     display: none;
-
   }
-
 }
 
-
-
 /* =========================================
-
    WHY TOUR WITH US — PREMIUM SECTION
-
-\========================================= */
-
-
+========================================= */
 
 .whyTour {
-
   --why-accent: #d46a43;
-
   --why-ink: #1e211f;
-
   --why-muted: #696b67;
-
   --why-paper: #f6f5f1;
 
-
-
   position: relative;
-
   overflow: hidden;
-
   padding: 100px 6%;
-
   background: var(--why-paper);
-
   color: var(--why-ink);
-
   isolation: isolate;
-
 }
-
-
 
 .whyTour::before {
-
   content: "";
-
   position: absolute;
-
   top: -120px;
-
   right: -100px;
-
   width: 320px;
-
   height: 320px;
-
   border: 1px solid rgba(212, 106, 67, 0.14);
-
   border-radius: 50%;
-
   z-index: -1;
-
 }
-
-
 
 .whyTour::after {
-
   content: "";
-
   position: absolute;
-
   top: -75px;
-
   right: -55px;
-
   width: 230px;
-
   height: 230px;
-
   border: 1px solid rgba(212, 106, 67, 0.12);
-
   border-radius: 50%;
-
   z-index: -1;
-
 }
-
-
 
 .whyTourInner {
-
   width: 100%;
-
   max-width: 1240px;
-
   margin: 0 auto;
-
 }
-
-
 
 .whyTourTop {
-
   display: grid;
-
   grid-template-columns: 1.05fr 0.95fr;
-
   align-items: center;
-
   gap: 75px;
-
 }
-
-
 
 .whyTourCopy {
-
   animation: whyTourReveal 0.9s ease both;
-
 }
-
-
 
 .whyTourEyebrow {
-
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   margin-bottom: 24px;
-
   color: var(--why-accent);
-
   font-size: 12px;
-
   font-weight: 800;
-
   letter-spacing: 3px;
-
   text-transform: uppercase;
-
 }
-
-
 
 .eyebrowLine {
-
   display: inline-block;
-
   width: 38px;
-
   height: 2px;
-
   background: var(--why-accent);
-
 }
-
-
 
 .whyTourTitle {
-
   max-width: 600px;
-
   margin: 0 0 25px;
-
   font-size: clamp(38px, 4.5vw, 66px);
-
   line-height: 1.06;
-
   letter-spacing: -2px;
-
   font-weight: 850;
-
 }
-
-
 
 .whyTourTitle span {
-
   color: var(--why-accent);
-
 }
-
-
 
 .whyTourLead {
-
   margin: 0 0 18px;
-
   font-size: 18px;
-
   font-weight: 650;
-
   line-height: 1.8;
-
   color: #333632;
-
 }
-
-
 
 .whyTourDescription {
-
   margin: 0;
-
   max-width: 590px;
-
   color: var(--why-muted);
-
   font-size: 15px;
-
   line-height: 1.95;
-
 }
-
-
 
 .whyTourButton {
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 12px;
-
   margin-top: 30px;
-
   padding: 15px 23px;
-
   border: 1px solid var(--why-accent);
-
   border-radius: 4px;
-
   background: var(--why-accent);
-
   color: #fff;
-
   font-size: 13px;
-
   font-weight: 750;
-
   letter-spacing: 0.5px;
-
   text-decoration: none;
-
   transition:
-
     background 0.3s ease,
-
     color 0.3s ease,
-
     transform 0.3s ease,
-
     box-shadow 0.3s ease;
-
 }
-
-
 
 .whyTourButton:hover {
-
   background: transparent;
-
   color: var(--why-accent);
-
   transform: translateY(-3px);
-
   box-shadow: 0 10px 25px rgba(212, 106, 67, 0.13);
-
 }
-
-
 
 .whyTourVisual {
-
   position: relative;
-
   min-width: 0;
-
   animation: whyTourReveal 1s ease 0.12s both;
-
 }
-
-
 
 .whyTourImage {
-
   position: relative;
-
   overflow: hidden;
-
   height: 520px;
-
   border-radius: 5px;
-
   background: #d8d8d3;
-
   box-shadow: 0 24px 60px rgba(30, 33, 31, 0.13);
-
 }
-
-
 
 .whyTourImage img {
-
   display: block;
-
   width: 100%;
-
   height: 100%;
-
   object-fit: cover;
-
   transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-
 }
-
-
 
 .whyTourVisual:hover .whyTourImage img {
-
   transform: scale(1.055);
-
 }
-
-
 
 .imageOverlay {
-
   position: absolute;
-
   inset: 0;
-
   background: linear-gradient(
-
     180deg,
-
     rgba(0, 0, 0, 0.02) 25%,
-
     rgba(0, 0, 0, 0.72) 100%
-
   );
-
   pointer-events: none;
-
 }
-
-
 
 .imageCaption {
-
   position: absolute;
-
   left: 28px;
-
   right: 28px;
-
   bottom: 28px;
-
   color: #fff;
-
 }
-
-
 
 .imageCaption span {
-
   display: block;
-
   margin-bottom: 8px;
-
   color: #f3b69b;
-
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 2.5px;
-
   text-transform: uppercase;
-
 }
-
-
 
 .imageCaption strong {
-
   display: block;
-
   max-width: 340px;
-
   font-size: clamp(23px, 2.4vw, 34px);
-
   line-height: 1.2;
-
   font-weight: 800;
-
 }
-
-
 
 .experienceStamp {
-
   position: absolute;
-
   top: 28px;
-
   left: -28px;
-
   display: flex;
-
   width: 112px;
-
   height: 112px;
-
   flex-direction: column;
-
   align-items: center;
-
   justify-content: center;
-
   border: 5px solid var(--why-paper);
-
   border-radius: 50%;
-
   background: var(--why-accent);
-
   color: #fff;
-
   text-align: center;
-
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.14);
-
   animation: whyStampFloat 4s ease-in-out infinite;
-
 }
-
-
 
 .experienceStamp strong {
-
   font-size: 31px;
-
   line-height: 1;
-
   font-weight: 850;
-
 }
-
-
 
 .experienceStamp span {
-
   margin-top: 5px;
-
   font-size: 9px;
-
   font-weight: 750;
-
   letter-spacing: 1px;
-
   text-transform: uppercase;
-
 }
-
-
 
 .whyTourDecor {
-
   position: absolute;
-
   right: -20px;
-
   bottom: -20px;
-
   width: 100px;
-
   height: 100px;
-
   border-right: 2px solid var(--why-accent);
-
   border-bottom: 2px solid var(--why-accent);
-
   pointer-events: none;
-
 }
-
-
 
 .whyTourDivider {
-
   width: 100%;
-
   height: 1px;
-
   margin: 75px 0 40px;
-
   background: rgba(30, 33, 31, 0.13);
-
 }
-
-
 
 .whyTourFeatures {
-
   display: grid;
-
   grid-template-columns: repeat(4, minmax(0, 1fr));
-
   gap: 0;
-
 }
-
-
 
 .whyTourFeature {
-
   position: relative;
-
   padding: 15px 28px 12px;
-
   border-right: 1px solid rgba(30, 33, 31, 0.12);
-
   transition: transform 0.3s ease;
-
 }
-
-
 
 .whyTourFeature:first-child {
-
   padding-left: 0;
-
 }
-
-
 
 .whyTourFeature:last-child {
-
   border-right: none;
-
 }
-
-
 
 .whyTourFeature:hover {
-
   transform: translateY(-6px);
-
 }
-
-
 
 .featureIcon {
-
   display: flex;
-
   width: 48px;
-
   height: 48px;
-
   align-items: center;
-
   justify-content: center;
-
   margin-bottom: 22px;
-
   border: 1px solid rgba(212, 106, 67, 0.35);
-
   border-radius: 50%;
-
   color: var(--why-accent);
-
   background: rgba(212, 106, 67, 0.06);
-
   transition:
-
     background 0.3s ease,
-
     color 0.3s ease,
-
     transform 0.3s ease;
-
 }
-
-
 
 .whyTourFeature:hover .featureIcon {
-
   background: var(--why-accent);
-
   color: #fff;
-
   transform: rotate(-8deg);
-
 }
-
-
 
 .featureNumber {
-
   display: block;
-
   margin-bottom: 9px;
-
   color: var(--why-accent);
-
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 1.5px;
-
 }
-
-
 
 .whyTourFeature h3 {
-
   margin: 0 0 10px;
-
   color: var(--why-ink);
-
   font-size: 17px;
-
   line-height: 1.4;
-
   font-weight: 800;
-
 }
-
-
 
 .whyTourFeature p {
-
   margin: 0;
-
   color: var(--why-muted);
-
   font-size: 13px;
-
   line-height: 1.8;
-
 }
-
-
 
 .whyTourFooter {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 24px;
-
   margin-top: 42px;
-
   padding-top: 28px;
-
   border-top: 1px solid rgba(30, 33, 31, 0.12);
-
 }
-
-
 
 .whyTourFooter p {
-
   margin: 0;
-
   color: var(--why-muted);
-
   font-size: 14px;
-
   line-height: 1.7;
-
 }
-
-
 
 .whyTourExplore {
-
   display: inline-flex;
-
   flex-shrink: 0;
-
   align-items: center;
-
   gap: 10px;
-
   color: var(--why-accent);
-
   font-size: 13px;
-
   font-weight: 800;
-
   text-decoration: none;
-
   transition: gap 0.25s ease;
-
 }
-
-
 
 .whyTourExplore:hover {
-
   gap: 16px;
-
 }
-
-
 
 @keyframes whyTourReveal {
-
   from {
-
     opacity: 0;
-
     transform: translateY(24px);
-
   }
-
-
 
   to {
-
     opacity: 1;
-
     transform: translateY(0);
-
   }
-
 }
-
-
 
 @keyframes whyStampFloat {
-
   0%,
-
   100% {
-
     transform: translateY(0) rotate(-5deg);
-
   }
-
-
 
   50% {
-
     transform: translateY(-8px) rotate(0deg);
-
   }
-
 }
 
-
-
 /* =========================================
-
    TABLET
-
-\========================================= */
-
-
+========================================= */
 
 @media (max-width: 1000px) {
-
   .whyTour {
-
     padding: 80px 5%;
-
   }
-
-
 
   .whyTourTop {
-
     grid-template-columns: 1fr 0.9fr;
-
     gap: 40px;
-
   }
-
-
 
   .whyTourImage {
-
     height: 450px;
-
   }
-
-
 
   .experienceStamp {
-
     left: -18px;
-
     width: 95px;
-
     height: 95px;
-
   }
-
-
 
   .experienceStamp strong {
-
     font-size: 27px;
-
   }
-
-
 
   .whyTourFeatures {
-
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     row-gap: 30px;
-
   }
-
-
 
   .whyTourFeature:nth-child(2) {
-
     border-right: none;
-
   }
-
-
 
   .whyTourFeature:nth-child(3) {
-
     padding-left: 0;
-
   }
-
 }
-
-
 
 /* =========================================
-
    MOBILE
-
-\========================================= */
-
-
+========================================= */
 
 @media (max-width: 700px) {
-
   .whyTour {
-
     padding: 65px 22px;
-
   }
-
-
 
   .whyTourTop {
-
     grid-template-columns: 1fr;
-
     gap: 42px;
-
   }
-
-
 
   .whyTourEyebrow {
-
     margin-bottom: 18px;
-
     font-size: 10px;
-
     letter-spacing: 2.3px;
-
   }
-
-
 
   .eyebrowLine {
-
     width: 28px;
-
   }
-
-
 
   .whyTourTitle {
-
     margin-bottom: 20px;
-
     font-size: clamp(36px, 10vw, 49px);
-
     letter-spacing: -1.5px;
-
   }
-
-
 
   .whyTourLead {
-
     font-size: 16px;
-
     line-height: 1.75;
-
   }
-
-
 
   .whyTourDescription {
-
     font-size: 14px;
-
     line-height: 1.85;
-
   }
-
-
 
   .whyTourButton {
-
     margin-top: 24px;
-
     padding: 14px 18px;
-
   }
-
-
 
   .whyTourImage {
-
     height: 390px;
-
   }
-
-
 
   .experienceStamp {
-
     top: 18px;
-
     left: -8px;
-
     width: 88px;
-
     height: 88px;
-
     border-width: 4px;
-
   }
-
-
 
   .experienceStamp strong {
-
     font-size: 25px;
-
   }
-
-
 
   .experienceStamp span {
-
     font-size: 8px;
-
   }
-
-
 
   .imageCaption {
-
     left: 20px;
-
     right: 20px;
-
     bottom: 22px;
-
   }
-
-
 
   .imageCaption strong {
-
     font-size: 27px;
-
   }
-
-
 
   .whyTourDecor {
-
     right: -10px;
-
     bottom: -10px;
-
     width: 65px;
-
     height: 65px;
-
   }
-
-
 
   .whyTourDivider {
-
     margin: 55px 0 25px;
-
   }
-
-
 
   .whyTourFeatures {
-
     grid-template-columns: 1fr 1fr;
-
     row-gap: 28px;
-
   }
-
-
 
   .whyTourFeature {
-
     padding: 12px 15px;
-
   }
-
-
 
   .whyTourFeature:first-child,
-
   .whyTourFeature:nth-child(3) {
-
     padding-left: 0;
-
   }
-
-
 
   .whyTourFeature:nth-child(2) {
-
     padding-right: 0;
-
   }
-
-
 
   .whyTourFeature:nth-child(3) {
-
     border-right: 1px solid rgba(30, 33, 31, 0.12);
-
   }
-
-
 
   .whyTourFeature:nth-child(even) {
-
     border-right: none;
-
   }
-
-
 
   .featureIcon {
-
     width: 42px;
-
     height: 42px;
-
     margin-bottom: 16px;
-
   }
-
-
 
   .whyTourFeature h3 {
-
     font-size: 15px;
-
   }
-
-
 
   .whyTourFeature p {
-
     font-size: 12px;
-
     line-height: 1.7;
-
   }
-
-
 
   .whyTourFooter {
-
     align-items: flex-start;
-
     flex-direction: column;
-
     gap: 18px;
-
     margin-top: 30px;
-
     padding-top: 24px;
-
   }
-
-
 
   .whyTourFooter p {
-
     font-size: 13px;
-
   }
-
 }
-
-
 
 /* Respect reduced-motion preferences */
-
 @media (prefers-reduced-motion: reduce) {
-
   .whyTourCopy,
-
   .whyTourVisual,
-
   .experienceStamp {
-
     animation: none;
-
   }
 
-
-
-  .whyTour \*,
-
-  .whyTour \*::before,
-
-  .whyTour \*::after {
-
+  .whyTour *,
+  .whyTour *::before,
+  .whyTour *::after {
     scroll-behavior: auto !important;
-
     transition-duration: 0.01ms !important;
-
   }
-
 }
 
-
-
 /* ==========================================
-
    WHAT TO EXPECT ON THE TOUR
-
-\========================================== */
-
-
+========================================== */
 
 .tourExpect {
-
   --expect-accent: #d46a43;
-
   --expect-ink: #20221f;
-
   --expect-muted: #696b67;
-
   --expect-paper: #f6f5f1;
 
-
-
   position: relative;
-
   overflow: hidden;
-
   padding: 100px 6%;
-
   color: var(--expect-ink);
-
   background: var(--expect-paper);
-
 }
-
-
 
 .tourExpect::before {
-
   content: "";
-
   position: absolute;
-
   top: -170px;
-
   right: -100px;
-
   width: 390px;
-
   height: 390px;
-
   border: 1px solid rgba(212, 106, 67, 0.13);
-
   border-radius: 50%;
-
   pointer-events: none;
-
 }
-
-
 
 .tourExpectInner {
-
   position: relative;
-
   width: 100%;
-
   max-width: 1240px;
-
   margin: 0 auto;
-
 }
-
-
 
 .tourExpectHeading {
-
   max-width: 680px;
-
   margin: 0 auto 55px;
-
   text-align: center;
-
   animation: expectReveal 0.7s ease both;
-
 }
-
-
 
 .tourExpectEyebrow {
-
   display: inline-flex;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 11px;
-
   margin-bottom: 20px;
-
   color: var(--expect-accent);
-
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 2.4px;
-
 }
-
-
 
 .tourExpectEyebrow span {
-
   display: inline-block;
-
   width: 30px;
-
   height: 2px;
-
   background: var(--expect-accent);
-
 }
-
-
 
 .tourExpectHeading h2 {
-
   margin: 0;
-
   color: var(--expect-ink);
-
   font-size: clamp(38px, 5vw, 61px);
-
   font-weight: 850;
-
   line-height: 1.08;
-
   letter-spacing: -2px;
-
 }
-
-
 
 .tourExpectHeading h2 span {
-
   color: var(--expect-accent);
-
 }
-
-
 
 .tourExpectHeading > p {
-
   max-width: 560px;
-
   margin: 20px auto 0;
-
   color: var(--expect-muted);
-
   font-size: 15px;
-
   line-height: 1.9;
-
 }
-
-
 
 .tourExpectGrid {
-
   display: grid;
-
   grid-template-columns: repeat(6, minmax(0, 1fr));
-
   gap: 20px;
-
 }
-
-
 
 .tourExpectCard {
-
   position: relative;
-
   grid-column: span 2;
-
   display: flex;
-
   min-width: 0;
-
   flex-direction: column;
-
   padding: 28px 26px 30px;
-
   overflow: hidden;
-
   border: 1px solid rgba(32, 34, 31, 0.09);
-
   border-radius: 7px;
-
   background: #fff;
-
   box-shadow: 0 8px 28px rgba(32, 34, 31, 0.035);
-
   animation: expectReveal 0.65s ease both;
-
   transition:
-
     transform 0.3s ease,
-
     box-shadow 0.3s ease,
-
     border-color 0.3s ease;
-
 }
-
-
 
 .tourExpectCard:nth-child(4) {
-
   grid-column: 2 / span 2;
-
 }
-
-
 
 .tourExpectCard:nth-child(5) {
-
   grid-column: 4 / span 2;
-
 }
-
-
 
 .tourExpectCard:hover {
-
   transform: translateY(-7px);
-
   border-color: rgba(212, 106, 67, 0.45);
-
   box-shadow: 0 18px 38px rgba(32, 34, 31, 0.09);
-
 }
-
-
 
 .tourExpectCardTop {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 12px;
-
   margin-bottom: 25px;
-
 }
-
-
 
 .tourExpectIcon {
-
   display: flex;
-
   width: 53px;
-
   height: 53px;
-
   flex-shrink: 0;
-
   align-items: center;
-
   justify-content: center;
-
   border-radius: 50%;
-
   color: var(--expect-accent);
-
   background: rgba(212, 106, 67, 0.09);
-
   transition:
-
     color 0.3s ease,
-
     background 0.3s ease,
-
     transform 0.3s ease;
-
 }
-
-
 
 .tourExpectCard:hover .tourExpectIcon {
-
   color: #fff;
-
   background: var(--expect-accent);
-
   transform: rotate(-7deg);
-
 }
-
-
 
 .tourExpectNumber {
-
   color: rgba(32, 34, 31, 0.34);
-
   font-size: 12px;
-
   font-weight: 800;
-
   letter-spacing: 1px;
-
 }
-
-
 
 .tourExpectCard h3 {
-
   margin: 0 0 13px;
-
   color: var(--expect-ink);
-
   font-size: 20px;
-
   font-weight: 800;
-
   line-height: 1.4;
-
   letter-spacing: -0.4px;
-
 }
-
-
 
 .tourExpectCard p {
-
   flex: 1;
-
   margin: 0;
-
   color: var(--expect-muted);
-
   font-size: 13.5px;
-
   line-height: 1.9;
-
 }
-
-
 
 .tourExpectCardLine {
-
   width: 38px;
-
   height: 3px;
-
   margin-top: 24px;
-
   border-radius: 5px;
-
   background: var(--expect-accent);
-
   transition: width 0.3s ease;
-
 }
-
-
 
 .tourExpectCard:hover .tourExpectCardLine {
-
   width: 70px;
-
 }
-
-
 
 .tourExpectBottom {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   gap: 25px;
-
   margin-top: 48px;
-
   padding: 30px 34px;
-
   border-radius: 6px;
-
   background: #222622;
-
   color: #fff;
-
 }
-
-
 
 .tourExpectBottomLabel {
-
   display: block;
-
   margin-bottom: 9px;
-
   color: #efab8c;
-
   font-size: 10px;
-
   font-weight: 800;
-
   letter-spacing: 2px;
-
 }
-
-
 
 .tourExpectBottom h3 {
-
   margin: 0;
-
   color: #fff;
-
   font-size: clamp(19px, 2.3vw, 27px);
-
   font-weight: 750;
-
   line-height: 1.4;
-
 }
-
-
 
 .tourExpectButton {
-
   display: inline-flex;
-
   flex-shrink: 0;
-
   align-items: center;
-
   justify-content: center;
-
   gap: 11px;
-
   padding: 15px 20px;
-
   border: 1px solid var(--expect-accent);
-
   border-radius: 4px;
-
   background: var(--expect-accent);
-
   color: #fff;
-
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 0.6px;
-
   text-decoration: none;
-
   transition:
-
     background 0.25s ease,
-
     color 0.25s ease,
-
     transform 0.25s ease;
-
 }
-
-
 
 .tourExpectButton:hover {
-
   transform: translateY(-2px);
-
   background: transparent;
-
   color: #f1b397;
-
 }
-
-
 
 /* Entry animation */
-
 @keyframes expectReveal {
-
   from {
-
     opacity: 0;
-
     transform: translateY(18px);
-
   }
-
-
 
   to {
-
     opacity: 1;
-
     transform: translateY(0);
-
   }
-
 }
 
-
-
 /* ==========================================
-
    TABLET
-
-\========================================== */
-
-
+========================================== */
 
 @media (max-width: 900px) {
-
   .tourExpect {
-
     padding: 80px 5%;
-
   }
-
-
 
   .tourExpectGrid {
-
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
   }
-
-
 
   .tourExpectCard,
-
   .tourExpectCard:nth-child(4),
-
   .tourExpectCard:nth-child(5) {
-
     grid-column: auto;
-
   }
-
-
 
   .tourExpectCard:last-child {
-
     grid-column: 1 / -1;
-
   }
-
-
 
   .tourExpectBottom {
-
     padding: 27px;
-
   }
-
 }
-
-
 
 /* ==========================================
-
    MOBILE
-
-\========================================== */
-
-
+========================================== */
 
 @media (max-width: 600px) {
-
   .tourExpect {
-
     padding: 65px 20px;
-
   }
-
-
 
   .tourExpectHeading {
-
     margin-bottom: 35px;
-
   }
-
-
 
   .tourExpectEyebrow {
-
     gap: 7px;
-
     font-size: 9px;
-
     letter-spacing: 1.5px;
-
   }
-
-
 
   .tourExpectEyebrow span {
-
     width: 19px;
-
   }
-
-
 
   .tourExpectHeading h2 {
-
     font-size: clamp(35px, 9.5vw, 46px);
-
     letter-spacing: -1.3px;
-
   }
-
-
 
   .tourExpectHeading > p {
-
     font-size: 14px;
-
     line-height: 1.8;
-
   }
-
-
 
   .tourExpectGrid {
-
     grid-template-columns: 1fr;
-
     gap: 15px;
-
   }
-
-
 
   .tourExpectCard,
-
   .tourExpectCard:last-child {
-
     grid-column: auto;
-
     padding: 24px 22px;
-
   }
-
-
 
   .tourExpectCardTop {
-
     margin-bottom: 19px;
-
   }
-
-
 
   .tourExpectCard h3 {
-
     font-size: 19px;
-
   }
-
-
 
   .tourExpectCard p {
-
     font-size: 13px;
-
   }
-
-
 
   .tourExpectBottom {
-
     align-items: flex-start;
-
     flex-direction: column;
-
     gap: 22px;
-
     margin-top: 30px;
-
     padding: 25px 22px;
-
   }
-
-
 
   .tourExpectButton {
-
     width: 100%;
-
   }
-
 }
-
-
 
 /* Respect reduced-motion preferences */
-
 @media (prefers-reduced-motion: reduce) {
-
   .tourExpectHeading,
-
   .tourExpectCard {
-
     animation: none;
-
   }
 
-
-
-  .tourExpect \*,
-
-  .tourExpect \*::before,
-
-  .tourExpect \*::after {
-
+  .tourExpect *,
+  .tourExpect *::before,
+  .tourExpect *::after {
     transition: none !important;
-
   }
-
 }
 
+/* ==========================================
+   WHAT'S INCLUDED — ALL-INCLUSIVE SECTION
+   Dark section with its own text colours, so
+   it stays readable in any page theme.
+========================================== */
 
+.included {
+  --inc-accent: #d46a43;
+  --inc-accent-soft: #f0a98a;
+  --inc-bg: #161917;
+  --inc-card: rgba(255, 255, 255, 0.045);
+  --inc-line: rgba(255, 255, 255, 0.12);
+  --inc-text: #f4f2ed;
+  --inc-muted: rgba(244, 242, 237, 0.74);
+
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: 104px 6% 90px;
+  color: var(--inc-text);
+  background:
+    radial-gradient(900px 420px at 88% -8%, rgba(212, 106, 67, 0.2), transparent 70%),
+    radial-gradient(700px 380px at 0% 108%, rgba(212, 106, 67, 0.11), transparent 70%),
+    var(--inc-bg);
+}
+
+/* Dotted mountain road drifting slowly behind the content */
+.includedRoute {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.includedRoute path {
+  fill: none;
+  stroke: rgba(240, 169, 138, 0.34);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1 16;
+  animation: includedRoadDrift 45s linear infinite;
+}
+
+@keyframes includedRoadDrift {
+  to {
+    stroke-dashoffset: -340;
+  }
+}
+
+.includedInner {
+  position: relative;
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.includedHeader {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: end;
+  gap: 56px;
+  margin-bottom: 56px;
+}
+
+.includedLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: var(--inc-accent-soft);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.includedLabel::before {
+  content: "";
+  width: 34px;
+  height: 2px;
+  background: var(--inc-accent);
+}
+
+.includedTitle {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(36px, 4.8vw, 64px);
+  font-weight: 850;
+  line-height: 1.06;
+  letter-spacing: -1.8px;
+}
+
+.includedTitle span {
+  display: block;
+  color: var(--inc-accent-soft);
+}
+
+.includedLead {
+  max-width: 500px;
+  margin: 0;
+  color: var(--inc-muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+/* ---------- Cards ---------- */
+
+.includedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.includedCard {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 30px 28px 28px;
+  overflow: hidden;
+  border: 1px solid var(--inc-line);
+  border-radius: 8px;
+  background: var(--inc-card);
+  opacity: 0;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    background 0.35s ease;
+}
+
+/* Warm spotlight that follows the cursor (position set from Home.jsx) */
+.includedCard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    360px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(212, 106, 67, 0.26),
+    transparent 62%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.includedCard > * {
+  position: relative;
+}
+
+.includedCard:hover {
+  transform: translateY(-6px);
+  border-color: rgba(240, 169, 138, 0.5);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.includedCard:hover::before {
+  opacity: 1;
+}
+
+/* Entrance: cards rise one after another when the section scrolls into view */
+.included.isVisible .includedCard {
+  opacity: 1;
+  animation: includedRise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: calc(var(--i) * 110ms + 120ms);
+}
+
+@keyframes includedRise {
+  from {
+    opacity: 0;
+    transform: translateY(38px) scale(0.97);
+  }
+}
+
+.includedIcon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  margin-bottom: 24px;
+  border: 1px solid rgba(240, 169, 138, 0.4);
+  border-radius: 50%;
+  background: rgba(212, 106, 67, 0.12);
+  color: var(--inc-accent-soft);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.includedCard:hover .includedIcon {
+  border-color: var(--inc-accent);
+  background: var(--inc-accent);
+  color: #fff;
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.includedCard h3 {
+  margin: 0 0 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.3px;
+}
+
+.includedCard p {
+  margin: 0;
+  color: var(--inc-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.includedPoints {
+  display: grid;
+  gap: 11px;
+  margin: auto 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--inc-line);
+  list-style: none;
+}
+
+.includedCard p + .includedPoints {
+  margin-top: 22px;
+}
+
+.includedPoints li {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+
+/* Tick that draws itself, one after another */
+.includedTick {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.includedTick circle {
+  stroke: rgba(240, 169, 138, 0.5);
+  stroke-width: 1.5;
+}
+
+.includedTick path {
+  stroke: var(--inc-accent-soft);
+  stroke-width: 2;
+  stroke-dasharray: 14;
+  stroke-dashoffset: 14;
+}
+
+.included.isVisible .includedTick path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.5s ease;
+  transition-delay: calc(var(--i) * 110ms + 520ms + var(--p) * 160ms);
+}
+
+/* ---------- Bottom panel ---------- */
+
+.includedBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 28px;
+  padding: 34px 38px;
+  border: 1px solid var(--inc-line);
+  border-radius: 8px;
+  background:
+    linear-gradient(120deg, rgba(212, 106, 67, 0.22), rgba(212, 106, 67, 0.04) 58%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.included.isVisible .includedHeader {
+  animation: includedFade 0.8s ease backwards;
+}
+
+.included.isVisible .includedBottom {
+  animation: includedFade 0.8s ease 0.95s backwards;
+}
+
+@keyframes includedFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
+.includedStats {
+  display: flex;
+  gap: clamp(26px, 4.5vw, 64px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.includedStats strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.includedStats span {
+  display: block;
+  max-width: 150px;
+  margin-top: 9px;
+  color: var(--inc-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.includedActions {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.includedPrimary,
+.includedGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 22px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.includedPrimary {
+  border: 1px solid var(--inc-accent);
+  background: var(--inc-accent);
+  color: #fff;
+}
+
+.includedPrimary:hover {
+  transform: translateY(-2px);
+  background: transparent;
+  color: var(--inc-accent-soft);
+}
+
+.includedGhost {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+}
+
+.includedGhost:hover {
+  transform: translateY(-2px);
+  border-color: #fff;
+}
+
+.includedPrimary:focus-visible,
+.includedGhost:focus-visible {
+  outline: 3px solid rgba(240, 169, 138, 0.55);
+  outline-offset: 3px;
+}
+
+.includedNote {
+  margin: 22px 0 0;
+  color: rgba(244, 242, 237, 0.55);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 1000px) {
+  .included {
+    padding: 82px 5% 76px;
+  }
+
+  .includedHeader {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 40px;
+  }
+
+  .includedGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .includedBottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+  .included {
+    padding: 68px 22px 62px;
+  }
+
+  .includedTitle {
+    font-size: clamp(34px, 9.5vw, 46px);
+    letter-spacing: -1.2px;
+  }
+
+  .includedLead {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .includedGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .includedCard {
+    padding: 26px 22px 24px;
+  }
+
+  .includedBottom {
+    padding: 26px 22px;
+  }
+
+  .includedStats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    width: 100%;
+  }
+
+  .includedStats strong {
+    font-size: 32px;
+  }
+
+  .includedStats span {
+    font-size: 11.5px;
+  }
+
+  .includedActions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .includedPrimary,
+  .includedGhost {
+    width: 100%;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .includedRoute path,
+  .included.isVisible .includedCard,
+  .included.isVisible .includedHeader,
+  .included.isVisible .includedBottom {
+    animation: none;
+  }
+
+  .includedCard,
+  .includedIcon,
+  .includedCard::before {
+    transition: none;
+  }
+
+  .includedCard:hover,
+  .includedCard:hover .includedIcon {
+    transform: none;
+  }
+
+  .includedTick path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}
 
 /* =========================================
    RIDER TESTIMONIALS — EDITORIAL TWO-UP SLIDER
@@ -2452,5 +1876,601 @@
   .riderTestimonials *::before,
   .riderTestimonials *::after {
     transition: none !important;
+  }
+}
+/* =========================================
+   BIKE GALLERY
+========================================= */
+
+.bikeGallery {
+  --bg-accent: #d46a43;
+  --bg-ink: #1e211f;
+  --bg-muted: #696b67;
+  --bg-stage: #f3f1ec;
+
+  position: relative;
+  overflow: hidden;
+  padding: 100px 6% 80px;
+  background: #fff;
+  color: var(--bg-ink);
+}
+
+.bikeGalleryInner {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+/* ---------- Heading ---------- */
+
+.bikeGalleryHeading {
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.bikeGalleryEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 18px;
+  color: var(--bg-accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+}
+
+.bikeGalleryEyebrow span {
+  display: inline-block;
+  width: 30px;
+  height: 2px;
+  background: var(--bg-accent);
+}
+
+.bikeGalleryHeading h2 {
+  margin: 0;
+  font-size: clamp(34px, 4.6vw, 58px);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -1.8px;
+}
+
+.bikeGalleryHeading h2 em {
+  color: var(--bg-accent);
+  font-style: normal;
+}
+
+/* ---------- Layout ---------- */
+
+.bikeGalleryGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: stretch;
+  gap: 36px;
+}
+
+/* ---------- Left: description card ---------- */
+
+.bikeGalleryCopy {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 38px 34px;
+  border: 1px solid rgba(30, 33, 31, 0.1);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(30, 33, 31, 0.06);
+  cursor: pointer;
+  outline: none;
+  transform-origin: center;
+  transition:
+    transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.45s ease,
+    border-color 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bikeGalleryCopy:hover {
+  border-color: rgba(212, 106, 67, 0.4);
+}
+
+.bikeGalleryCopy:focus-visible {
+  outline: 3px solid rgba(212, 106, 67, 0.4);
+  outline-offset: 4px;
+}
+
+/* Tap = description zooms a little */
+.bikeGalleryCopy.isZoomed {
+  z-index: 3;
+  transform: scale(1.06);
+  border-color: var(--bg-accent);
+  box-shadow: 0 28px 60px rgba(212, 106, 67, 0.22);
+}
+
+.bikeGalleryCopyInner {
+  display: flex;
+  flex-direction: column;
+}
+
+.bikeGalleryCount {
+  margin-bottom: 14px;
+  color: var(--bg-accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.bikeGalleryCount b {
+  color: rgba(30, 33, 31, 0.35);
+  font-weight: 800;
+}
+
+.bikeGalleryName {
+  margin: 0 0 8px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 850;
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+}
+
+.bikeGalleryTagline {
+  margin: 0 0 16px;
+  color: var(--bg-accent);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.bikeGalleryText {
+  margin: 0;
+  color: var(--bg-muted);
+  font-size: 15px;
+  line-height: 1.85;
+  transition: font-size 0.35s ease, color 0.35s ease;
+}
+
+.bikeGalleryCopy.isZoomed .bikeGalleryText {
+  color: #44463f;
+}
+
+.bikeGallerySpecs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bikeGallerySpecs li {
+  padding: 13px 12px;
+  border-radius: 6px;
+  background: rgba(212, 106, 67, 0.08);
+  text-align: center;
+}
+
+.bikeGallerySpecs strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.bikeGallerySpecs span {
+  display: block;
+  margin-top: 4px;
+  color: var(--bg-muted);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.bikeGalleryHint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 22px;
+  color: rgba(30, 33, 31, 0.5);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ---------- Right: photo stage ---------- */
+
+.bikeGalleryStage {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 55%, #fff 0%, var(--bg-stage) 100%);
+  box-shadow: 0 20px 50px rgba(30, 33, 31, 0.08);
+  touch-action: pan-y;
+  user-select: none;
+}
+
+.bikeGalleryPhoto {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 460px;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 36px 64px;
+  cursor: pointer;
+}
+
+.bikeGalleryImg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  /* white photo background blends into the stage colour */
+  mix-blend-mode: multiply;
+}
+
+.bikeGalleryGround {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  width: 62%;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(30, 33, 31, 0.16),
+    transparent 70%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.bikeGalleryArrows {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
+  display: flex;
+  gap: 9px;
+}
+
+.bikeGalleryArrows button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(30, 33, 31, 0.14);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bg-ink);
+  cursor: pointer;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s ease;
+}
+
+.bikeGalleryArrows button:hover {
+  transform: translateY(-2px);
+  border-color: var(--bg-accent);
+  background: var(--bg-accent);
+  color: #fff;
+}
+
+/* ---------- Slide animations (every 5s / on click / on swipe) ---------- */
+
+.slideNext.bikeGalleryCopyInner {
+  animation: bikeCopyInNext 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.slidePrev.bikeGalleryCopyInner {
+  animation: bikeCopyInPrev 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.slideNext.bikeGalleryImg {
+  animation: bikeImgInNext 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+.slidePrev.bikeGalleryImg {
+  animation: bikeImgInPrev 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+@keyframes bikeCopyInNext {
+  from {
+    opacity: 0;
+    transform: translateX(-34px);
+  }
+}
+
+@keyframes bikeCopyInPrev {
+  from {
+    opacity: 0;
+    transform: translateX(34px);
+  }
+}
+
+@keyframes bikeImgInNext {
+  from {
+    opacity: 0;
+    transform: translateX(110px) scale(0.94);
+  }
+}
+
+@keyframes bikeImgInPrev {
+  from {
+    opacity: 0;
+    transform: translateX(-110px) scale(0.94);
+  }
+}
+
+/* ---------- Tabs + 5 second progress ---------- */
+
+.bikeGalleryTabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.bikeGalleryTab {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(30, 33, 31, 0.5);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.bikeGalleryTab:hover,
+.bikeGalleryTab.tabActive {
+  color: var(--bg-ink);
+}
+
+.bikeGalleryTabName {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.bikeGalleryTrack {
+  display: block;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 3px;
+  background: rgba(30, 33, 31, 0.12);
+}
+
+.bikeGalleryFill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--bg-accent);
+  transform-origin: left center;
+  animation-name: bikeProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes bikeProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* hover or zoom = timer pauses (bar pauses too) */
+.isPaused .bikeGalleryFill {
+  animation-play-state: paused;
+}
+
+.bikeGalleryTab:focus-visible,
+.bikeGalleryArrows button:focus-visible,
+.bikeGalleryLink:focus-visible {
+  outline: 3px solid rgba(212, 106, 67, 0.4);
+  outline-offset: 4px;
+}
+
+/* ---------- Footer ---------- */
+
+.bikeGalleryFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 36px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(30, 33, 31, 0.12);
+}
+
+.bikeGalleryFooter p {
+  margin: 0;
+  color: var(--bg-muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.bikeGalleryLink {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  color: var(--bg-accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: gap 0.25s ease;
+}
+
+.bikeGalleryLink:hover {
+  gap: 16px;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (max-width: 1000px) {
+  .bikeGallery {
+    padding: 80px 5% 70px;
+  }
+
+  .bikeGalleryGrid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  /* photo on top, description below */
+  .bikeGalleryStage {
+    order: -1;
+  }
+
+  .bikeGalleryPhoto {
+    min-height: 380px;
+  }
+
+  .bikeGalleryImg {
+    max-height: 320px;
+  }
+
+  .bikeGalleryCopy.isZoomed {
+    transform: scale(1.03);
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+  .bikeGallery {
+    padding: 62px 18px 56px;
+  }
+
+  .bikeGalleryHeading {
+    margin-bottom: 30px;
+  }
+
+  .bikeGalleryPhoto {
+    min-height: 270px;
+    padding: 22px 18px 58px;
+  }
+
+  .bikeGalleryImg {
+    max-height: 210px;
+  }
+
+  .bikeGalleryGround {
+    bottom: 60px;
+    height: 16px;
+  }
+
+  .bikeGalleryArrows {
+    right: 12px;
+    bottom: 10px;
+  }
+
+  .bikeGalleryArrows button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .bikeGalleryCopy {
+    padding: 26px 22px 22px;
+  }
+
+  .bikeGalleryText {
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .bikeGallerySpecs {
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .bikeGallerySpecs li {
+    padding: 11px 6px;
+  }
+
+  .bikeGallerySpecs strong {
+    font-size: 15px;
+  }
+
+  .bikeGallerySpecs span {
+    font-size: 9.5px;
+    letter-spacing: 0.6px;
+  }
+
+  .bikeGalleryCopy.isZoomed {
+    transform: scale(1.025);
+  }
+
+  .bikeGalleryTabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 14px;
+    margin-top: 26px;
+  }
+
+  .bikeGalleryFooter {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .bikeGalleryFooter p {
+    font-size: 13px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+/* The progress bar is the slide timer, so it keeps running. */
+
+@media (prefers-reduced-motion: reduce) {
+  .slideNext.bikeGalleryCopyInner,
+  .slidePrev.bikeGalleryCopyInner,
+  .slideNext.bikeGalleryImg,
+  .slidePrev.bikeGalleryImg {
+    animation: none;
+  }
+
+  .bikeGalleryCopy,
+  .bikeGalleryArrows button,
+  .bikeGalleryLink {
+    transition: none;
+  }
+}
+/* =========================================
+   HOME PAGE SIZE CONTROL
+   Navbar ko chhodkar poora home page chhota karta hai.
+   Sirf neeche wali --home-scale value badalni hai:
+   1 = original, 0.9 = thoda chhota, 0.85 = default, 0.8 = aur chhota
+========================================= */
+
+:global(.home-page) {
+  --home-scale: 0.85;
+  zoom: var(--home-scale);
+}
+
+@media (max-width: 1000px) {
+  :global(.home-page) {
+    --home-scale: 0.9;
+  }
+}
+
+@media (max-width: 640px) {
+  :global(.home-page) {
+    --home-scale: 0.95;
   }
 }

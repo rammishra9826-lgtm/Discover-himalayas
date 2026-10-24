@@ -1,6 +1,6 @@
-
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+
 import {
   ArrowUpRight,
   Compass,
@@ -10,6 +10,11 @@ import {
   Mountain,
   ArrowLeft,
   ArrowRight,
+  Gauge,
+  Fuel,
+  Truck,
+  Utensils,
+  ZoomIn,
 } from "lucide-react";
 import styles from "../styles/HomeHero.module.css";
 
@@ -98,6 +103,488 @@ const tourHighlights = [
     icon: ShieldCheck,
   },
 ];
+
+// BIKE GALLERY: change image paths / text here
+const bikes = [
+  {
+    name: "Himalayan 450",
+    tab: "Himalayan 450",
+    tagline: "Built for the high passes.",
+    description:
+      "The newest all-rounder in the lineup. A liquid-cooled engine, long-travel suspension and a confident stance make it a natural choice for Ladakh and Spiti, on tarmac or off it.",
+    image: "public/images/bikes/RE Himalayan 450.png",
+    specs: [
+      { label: "Engine", value: "452 cc" },
+      { label: "Power", value: "40 PS" },
+      { label: "Gearbox", value: "6-speed" },
+    ],
+  },
+  {
+    name: "Interceptor 650",
+    tab: "Interceptor 650",
+    tagline: "Twin-cylinder soul.",
+    description:
+      "A smooth parallel twin with a classic roadster look. Relaxed at cruising speed and effortless on long highway stretches, it is made for riders who love an easy, comfortable pace.",
+    image: "/images/bikes/RE Interceptor 650.png",
+    specs: [
+      { label: "Engine", value: "648 cc" },
+      { label: "Power", value: "47 PS" },
+      { label: "Gearbox", value: "6-speed" },
+    ],
+  },
+  {
+    name: "RE 350",
+    tab: "RE 350",
+    tagline: "Easy to ride, hard to forget.",
+    description:
+      "Light, friendly and refined. Its easy handling and steady thump make it a great pick for riders who want comfort over distance and a classic Royal Enfield feel.",
+    image: "public/images/bikes/RE 350.png",
+    specs: [
+      { label: "Engine", value: "349 cc" },
+      { label: "Power", value: "20 PS" },
+      { label: "Gearbox", value: "5-speed" },
+    ],
+  },
+  {
+    name: "RE 411",
+    tab: "RE 411",
+    tagline: "The proven mountain workhorse.",
+    description:
+      "A tough, simple and dependable air-cooled single that has carried riders across the Himalayas for years. Strong low-end pull and easy repairs make it ideal for remote roads.",
+    image: "public/images/bikes/RE 411.png",
+    specs: [
+      { label: "Engine", value: "411 cc" },
+      { label: "Power", value: "24 PS" },
+      { label: "Gearbox", value: "5-speed" },
+    ],
+  },
+];
+
+const BIKE_SLIDE_MS = 5000;
+
+// BIKE GALLERY: auto-changes every 5 seconds, tap to zoom the description
+function BikeGallery() {
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [hovered, setHovered] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+  const touchStartX = useRef(null);
+
+  const bike = bikes[index];
+  const paused = hovered || zoomed;
+
+  const goTo = (target, dir) => {
+    setDirection(dir);
+    setZoomed(false);
+    setIndex((target + bikes.length) % bikes.length);
+  };
+
+  const goNext = () => goTo(index + 1, 1);
+  const goPrev = () => goTo(index - 1, -1);
+
+  const selectTab = (target) => {
+    if (target === index) return;
+    goTo(target, target > index ? 1 : -1);
+  };
+
+  const toggleZoom = () => setZoomed((value) => !value);
+
+  const handleZoomKey = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      toggleZoom();
+    }
+  };
+
+  // Preload all bike images so slides change without flicker.
+  useEffect(() => {
+    bikes.forEach((item) => {
+      const img = new Image();
+      img.src = item.image;
+    });
+  }, []);
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return;
+    const delta = event.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (Math.abs(delta) < 45) return;
+    if (delta < 0) goNext();
+    else goPrev();
+  };
+
+  const slideClass = direction === 1 ? styles.slideNext : styles.slidePrev;
+
+  return (
+    <section
+      className={`${styles.bikeGallery} ${paused ? styles.isPaused : ""}`}
+      id="bike-gallery"
+      aria-labelledby="bike-gallery-title"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className={styles.bikeGalleryInner}>
+        <div className={styles.bikeGalleryHeading}>
+          <span className={styles.bikeGalleryEyebrow}>
+            <span />
+            OUR RIDES
+          </span>
+          <h2 id="bike-gallery-title">
+            Choose your <em>machine.</em>
+          </h2>
+        </div>
+
+        <div className={styles.bikeGalleryGrid}>
+          {/* LEFT: description */}
+          <div
+            className={`${styles.bikeGalleryCopy} ${
+              zoomed ? styles.isZoomed : ""
+            }`}
+            role="button"
+            tabIndex={0}
+            aria-pressed={zoomed}
+            aria-label={`${bike.name} details. Tap to ${
+              zoomed ? "zoom out" : "zoom in"
+            }`}
+            onClick={toggleZoom}
+            onKeyDown={handleZoomKey}
+            aria-live="polite"
+          >
+            <div className={`${styles.bikeGalleryCopyInner} ${slideClass}`} key={index}>
+              <span className={styles.bikeGalleryCount}>
+                {String(index + 1).padStart(2, "0")}
+                <b> / {String(bikes.length).padStart(2, "0")}</b>
+              </span>
+
+              <h3 className={styles.bikeGalleryName}>{bike.name}</h3>
+              <p className={styles.bikeGalleryTagline}>{bike.tagline}</p>
+              <p className={styles.bikeGalleryText}>{bike.description}</p>
+
+              <ul className={styles.bikeGallerySpecs}>
+                {bike.specs.map((spec) => (
+                  <li key={spec.label}>
+                    <strong>{spec.value}</strong>
+                    <span>{spec.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <span className={styles.bikeGalleryHint}>
+              <ZoomIn size={15} aria-hidden="true" />
+              {zoomed ? "Tap to zoom out" : "Tap to zoom"}
+            </span>
+          </div>
+
+          {/* RIGHT: photo */}
+          <div
+            className={styles.bikeGalleryStage}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div
+              className={styles.bikeGalleryPhoto}
+              onClick={toggleZoom}
+              aria-hidden="true"
+            >
+              <img
+                key={index}
+                className={`${styles.bikeGalleryImg} ${slideClass}`}
+                src={bike.image}
+                alt=""
+                draggable="false"
+              />
+              <span className={styles.bikeGalleryGround} />
+            </div>
+
+            <div className={styles.bikeGalleryArrows}>
+              <button type="button" aria-label="Previous bike" onClick={goPrev}>
+                <ArrowLeft size={19} aria-hidden="true" />
+              </button>
+              <button type="button" aria-label="Next bike" onClick={goNext}>
+                <ArrowRight size={19} aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Tabs with 5-second progress */}
+        <div className={styles.bikeGalleryTabs} role="tablist" aria-label="Choose a bike">
+          {bikes.map((item, i) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              key={item.name}
+              className={`${styles.bikeGalleryTab} ${
+                i === index ? styles.tabActive : ""
+              }`}
+              onClick={() => selectTab(i)}
+            >
+              <span className={styles.bikeGalleryTabName}>{item.tab}</span>
+              <span className={styles.bikeGalleryTrack}>
+                {i === index && (
+                  <span
+                    key={`fill-${index}`}
+                    className={styles.bikeGalleryFill}
+                    style={{ animationDuration: `${BIKE_SLIDE_MS}ms` }}
+                    onAnimationEnd={goNext}
+                  />
+                )}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        <div className={styles.bikeGalleryFooter}>
+          <p>Every tour includes a Royal Enfield, fuel and a mechanic on the road.</p>
+          <Link to="/tours" className={styles.bikeGalleryLink}>
+            SEE TOURS
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+// What the tour price covers (based on the Little Tibet tour page; check each tour for exact details).
+const included = [
+  {
+    title: "Royal Enfield motorcycle",
+    description:
+      "Your bike for the whole journey, ready to ride and fully insured.",
+    points: ["Comprehensive insurance", "Touring gear provided"],
+    icon: Gauge,
+  },
+  {
+    title: "Fuel and oil",
+    description:
+      "Every litre of fuel and oil is covered, so you never budget at the pump.",
+    points: ["All fuel", "All engine oil"],
+    icon: Fuel,
+  },
+  {
+    title: "Spares and mechanic",
+    description:
+      "Replacement parts are included, with a professional mechanic riding along.",
+    points: ["All replacement parts", "Mechanic on every tour"],
+    icon: Wrench,
+  },
+  {
+    title: "Support jeep",
+    description:
+      "Ride light. Your luggage travels in the support vehicle behind you.",
+    points: ["Baggage carried for you", "Reserved seats for pillions"],
+    icon: Truck,
+  },
+  {
+    title: "Handpicked hotels",
+    description:
+      "Comfortable stays chosen for their location and warmth, shared between two riders.",
+    points: ["Double accommodation", "En-suite shower and WC"],
+    icon: BedDouble,
+  },
+  {
+    title: "All your meals",
+    description:
+      "Breakfast, lunch and dinner from the first morning to the last, with drinks on the table.",
+    points: ["Breakfast, lunch and dinner", "Non-alcoholic beverages"],
+    icon: Utensils,
+  },
+];
+
+// Counts up from 0 once `active` becomes true. Respects reduced-motion settings.
+function CountUp({ to, suffix = "", active }) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!active) return undefined;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion || to === 0) {
+      setValue(to);
+      return undefined;
+    }
+
+    let frame;
+    const duration = 1600;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(to * eased));
+      if (progress < 1) frame = window.requestAnimationFrame(tick);
+    };
+
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [active, to]);
+
+  return (
+    <>
+      {value}
+      {suffix}
+    </>
+  );
+}
+
+// WHAT'S INCLUDED — animated all-inclusive section
+function WhatsIncluded() {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  // Start all animations once the section scrolls into view.
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return undefined;
+
+    if (!("IntersectionObserver" in window)) {
+      setVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.18 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // Moves the warm spotlight inside a card to follow the cursor.
+  const handleMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`${styles.included} ${visible ? styles.isVisible : ""}`}
+      id="whats-included"
+      aria-labelledby="included-title"
+    >
+      <svg
+        className={styles.includedRoute}
+        viewBox="0 0 1440 640"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+      >
+        <path d="M-40 470 C 160 330, 280 590, 480 450 S 780 280, 1000 420 S 1260 580, 1480 380" />
+        <path d="M-40 560 C 200 470, 360 640, 600 540 S 900 400, 1120 520 S 1340 620, 1480 520" />
+      </svg>
+
+      <div className={styles.includedInner}>
+        <div className={styles.includedHeader}>
+          <div>
+            <span className={styles.includedLabel}>What&apos;s included</span>
+            <h2 className={styles.includedTitle} id="included-title">
+              All-inclusive.
+              <span>Just bring yourself.</span>
+            </h2>
+          </div>
+
+          <p className={styles.includedLead}>
+            One tour price covers the bike, the fuel, the spares, the hotels
+            and every meal. Pack your bag, show up, and leave the logistics to
+            us.
+          </p>
+        </div>
+
+        <div className={styles.includedGrid}>
+          {included.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <article
+                className={styles.includedCard}
+                key={item.title}
+                style={{ "--i": index }}
+                onMouseMove={handleMove}
+              >
+                <div className={styles.includedIcon}>
+                  <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
+                </div>
+
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+
+                <ul className={styles.includedPoints}>
+                  {item.points.map((point, pointIndex) => (
+                    <li key={point} style={{ "--p": pointIndex }}>
+                      <svg
+                        className={styles.includedTick}
+                        viewBox="0 0 20 20"
+                        aria-hidden="true"
+                      >
+                        <circle cx="10" cy="10" r="9" />
+                        <path d="M5.8 10.4l2.9 2.9 5.6-6" />
+                      </svg>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className={styles.includedBottom}>
+          <ul className={styles.includedStats}>
+            <li>
+              <strong>
+                <CountUp to={30} suffix="+" active={visible} />
+              </strong>
+              <span>Years on Himalayan roads</span>
+            </li>
+            <li>
+              <strong>
+                <CountUp to={14} active={visible} />
+              </strong>
+              <span>Riders at most in a group</span>
+            </li>
+            <li>
+              <strong>
+                <CountUp to={6} active={visible} />
+              </strong>
+              <span>Essentials covered in your price</span>
+            </li>
+          </ul>
+
+          <div className={styles.includedActions}>
+            <Link to="/tours" className={styles.includedPrimary}>
+              See tour prices
+              <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+            <Link to="/contact" className={styles.includedGhost}>
+              Ask us anything
+            </Link>
+          </div>
+        </div>
+
+        <p className={styles.includedNote}>
+          Inclusions shown are based on our guided tours and can vary by tour.
+          Please check each tour page for the full details.
+        </p>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -316,6 +803,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* BIKE GALLERY */}
+      <BikeGallery />
+
+
 
       {/* WHAT TO EXPECT ON THE TOUR — NEW SECTION */}
       <section
@@ -458,6 +949,9 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* WHAT'S INCLUDED — NEW ANIMATED SECTION (middle of the page) */}
+      <WhatsIncluded />
 
       {/* EXPERIENCE */}
       <section className="experience-section">
