@@ -1,0 +1,488 @@
+.page {
+  --navy: #102a43;
+  --deep: #081c2e;
+  --blue: #168aad;
+  --sky: #69d2ff;
+  --pale: #eaf7ff;
+  --text: #243b53;
+  --muted: #627d98;
+  background: #fff;
+  color: var(--text);
+  overflow: hidden;
+}
+
+.hero {
+  position: relative;
+  display: flex;
+  min-height: 640px;
+  height: min(760px, 86vh);
+  align-items: center;
+  background: var(--deep);
+  color: white;
+  overflow: hidden;
+}
+
+.heroImage,
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heroImage {
+  object-fit: cover;
+  animation: destinationZoom 18s ease-in-out infinite alternate;
+}
+
+.heroOverlay {
+  background:
+    linear-gradient(90deg, rgba(5, 22, 37, 0.88), rgba(5, 22, 37, 0.48) 57%, rgba(5, 22, 37, 0.12)),
+    linear-gradient(0deg, rgba(5, 22, 37, 0.52), transparent 40%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 88%);
+  margin: 0 auto;
+  padding: 80px 0 100px;
+  animation: destinationEnter 0.8s ease both;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--blue);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.19em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.hero .eyebrow {
+  color: var(--sky);
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: clamp(4rem, 9vw, 7.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.93;
+  text-transform: uppercase;
+}
+
+.hero h1 span {
+  color: var(--sky);
+}
+
+.heroContent > p {
+  max-width: 550px;
+  margin: 26px 0 30px;
+  color: rgba(255, 255, 255, 0.83);
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.primaryButton {
+  display: inline-flex;
+  min-height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 15px 22px;
+  border: 1px solid var(--sky);
+  border-radius: 2px;
+  background: var(--sky);
+  color: var(--deep);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  border-color: white;
+  background: white;
+  color: var(--deep);
+}
+
+.heroBottom {
+  position: absolute;
+  right: 6%;
+  bottom: 24px;
+  left: 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: center;
+  gap: clamp(35px, 8vw, 120px);
+  width: min(1120px, 88%);
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.intro h2,
+.sectionHeading h2,
+.cta h2 {
+  margin: 0;
+  color: var(--navy);
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4.3rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.intro h2 span {
+  color: var(--blue);
+}
+
+.intro > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.95;
+}
+
+.destinationSection {
+  padding: 85px 6% 105px;
+  background: #f3f9fd;
+  scroll-margin-top: 30px;
+}
+
+.sectionHeading {
+  display: flex;
+  width: min(1120px, 100%);
+  align-items: end;
+  justify-content: space-between;
+  gap: 25px;
+  margin: 0 auto 38px;
+}
+
+.sectionHeading .eyebrow {
+  margin-bottom: 12px;
+}
+
+.sectionHeading h2 {
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+}
+
+.destinationCount {
+  padding-bottom: 8px;
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+
+.destinationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.destinationCard {
+  min-width: 0;
+  background: white;
+  box-shadow: 0 5px 25px rgba(16, 42, 67, 0.035);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.destinationCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 38px rgba(16, 42, 67, 0.11);
+}
+
+.imageLink {
+  position: relative;
+  display: block;
+  height: 260px;
+  overflow: hidden;
+  background: #d8e9f3;
+}
+
+.imageLink img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.destinationCard:hover .imageLink img {
+  transform: scale(1.07);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(5, 22, 37, 0.4), transparent 60%);
+  pointer-events: none;
+}
+
+.number {
+  position: absolute;
+  z-index: 1;
+  top: 16px;
+  left: 17px;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.imageArrow {
+  position: absolute;
+  z-index: 1;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.15rem;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.destinationCard:hover .imageArrow {
+  background: var(--sky);
+  color: var(--deep);
+}
+
+.cardContent {
+  padding: 24px 22px 21px;
+}
+
+.region {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--blue);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.cardContent h3 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-family: "Barlow Condensed", Impact, sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.cardContent > p {
+  min-height: 100px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.89rem;
+  line-height: 1.8;
+}
+
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 17px;
+  border-top: 1px solid #e3edf4;
+}
+
+.cardFooter > span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.cardFooter a {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue);
+  font-size: 0.77rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.cardFooter a:hover {
+  color: var(--navy);
+}
+
+.cta {
+  position: relative;
+  padding: 105px 6%;
+  background:
+    radial-gradient(ellipse at 85% 10%, rgba(105, 210, 255, 0.2), transparent 36%),
+    var(--navy);
+  color: white;
+}
+
+.ctaContent {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.cta .eyebrow {
+  color: var(--sky);
+}
+
+.cta h2 {
+  color: white;
+  font-size: clamp(2.8rem, 6vw, 5rem);
+}
+
+.ctaContent > p {
+  max-width: 580px;
+  margin: 24px 0 30px;
+  color: rgba(255, 255, 255, 0.77);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+@keyframes destinationEnter {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes destinationZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07);
+  }
+}
+
+@media (max-width: 950px) {
+  .destinationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro {
+    gap: 40px;
+  }
+
+  .imageLink {
+    height: 245px;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero {
+    min-height: 570px;
+    height: 78svh;
+  }
+
+  .heroContent {
+    width: 88%;
+    padding: 60px 0 100px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3.7rem, 14vw, 5.5rem);
+  }
+
+  .heroContent > p {
+    font-size: 0.95rem;
+  }
+
+  .heroBottom {
+    flex-wrap: wrap;
+    font-size: 0.57rem;
+    letter-spacing: 0.08em;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 70px 0;
+  }
+
+  .intro h2 {
+    font-size: 3.2rem;
+  }
+
+  .destinationSection {
+    padding: 65px 6% 75px;
+  }
+
+  .sectionHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .destinationGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .imageLink {
+    height: 250px;
+  }
+
+  .cardContent > p {
+    min-height: 0;
+  }
+
+  .cta {
+    padding: 75px 6%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroImage {
+    animation: none;
+  }
+
+  .heroContent {
+    animation: none;
+  }
+
+  .destinationCard,
+  .imageLink img,
+  .imageArrow,
+  .primaryButton {
+    transition: none;
+  }
+}

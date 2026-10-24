@@ -1,0 +1,404 @@
+
+.siteHeader {
+  --nav-teal: #0d7185;
+  --nav-deep: #0b2638;
+  --nav-cyan: #39d0ff;
+  --nav-white: #ffffff;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+
+  /* Compact navbar */
+  height: 76px;
+  min-height: 76px;
+  padding: 5px clamp(18px, 4vw, 64px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+
+  background: linear-gradient(
+    110deg,
+    var(--nav-deep) 0%,
+    #0d526b 48%,
+    var(--nav-teal) 100%
+  );
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 5px 18px rgba(4, 25, 40, 0.18);
+}
+
+/* Logo */
+.siteLogo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 1 auto;
+  min-width: 0;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logoImage {
+  display: block;
+  width: auto;
+  height: 68px;
+  max-width: 280px;
+  object-fit: contain;
+  object-position: left center;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.siteLogo:hover .logoImage {
+  transform: scale(1.03);
+  filter: drop-shadow(0 0 6px rgba(57, 208, 255, 0.3));
+}
+
+/* Navigation */
+.bikeNav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px, 1.7vw, 24px);
+  min-height: 44px;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 2px;
+  border-radius: 5px;
+  background: var(--nav-cyan);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.navLink:hover,
+.navLinkActive {
+  color: var(--nav-cyan);
+}
+
+.navLink:hover {
+  transform: translateY(-2px);
+}
+
+.navLink:hover::after,
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
+/* Bike marker */
+.bikeMarker {
+  position: absolute;
+  top: 32px;
+  z-index: 2;
+  width: 48px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition:
+    left 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease;
+}
+
+.bikeReady {
+  opacity: 1;
+}
+
+.bikeImage {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 44px;
+  height: 26px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
+  animation: bikeRide 0.8s ease-in-out infinite alternate;
+}
+
+.bikeGlow {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: -2px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--nav-cyan);
+  filter: blur(6px);
+  opacity: 0.65;
+}
+
+@keyframes bikeRide {
+  from {
+    transform: translateY(0) rotate(-1deg);
+  }
+  to {
+    transform: translateY(-2px) rotate(1deg);
+  }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .siteHeader {
+    gap: 14px;
+    padding-inline: 16px;
+  }
+
+  .logoImage {
+    height: 60px;
+    max-width: 220px;
+  }
+
+  .bikeNav {
+    gap: 10px;
+  }
+
+  .navLink {
+    font-size: 11px;
+  }
+
+  .bikeMarker {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 620px) {
+  .siteHeader {
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 6px 14px 8px;
+  }
+
+  .logoImage {
+    height: 54px;
+    max-width: 250px;
+  }
+
+  .bikeNav {
+    width: 100%;
+    min-height: 38px;
+    justify-content: flex-start;
+    gap: 18px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #39d0ff transparent;
+  }
+
+  .navLink {
+    flex-shrink: 0;
+    min-height: 34px;
+    font-size: 12px;
+  }
+
+  .navLink::after {
+    bottom: 0;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .siteLogo,
+  .navLink,
+  .navLink::after,
+  .bikeMarker,
+  .logoImage {
+    transition: none;
+  }
+
+  .bikeImage {
+    animation: none;
+  }
+}
+/* ===== Premium Animated Brand Logo ===== */
+
+.siteLogo {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: transform 0.35s ease;
+}
+
+.siteLogo:hover {
+  transform: translateY(-2px);
+}
+
+.logoImage {
+  display: block;
+  width: auto;
+  height: 58px;
+  max-width: 150px;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 5px rgba(57, 208, 255, 0.18));
+  transition: filter 0.35s ease, transform 0.35s ease;
+}
+
+.siteLogo:hover .logoImage {
+  filter: drop-shadow(0 0 10px rgba(57, 208, 255, 0.65));
+  transform: scale(1.04);
+}
+
+/* Brand text layout */
+.logoText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: "Arial", sans-serif;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+}
+
+/* DISCOVER — icy blue */
+.logoDiscover {
+  font-size: 13px;
+  color: #b9f1ff;
+  letter-spacing: 3.5px;
+  animation: discoverReveal 0.9s ease both;
+  text-shadow: 0 0 12px rgba(57, 208, 255, 0.25);
+}
+
+/* HIMALAYAS — animated gradient */
+.logoHimalayas {
+  font-size: 20px;
+  font-weight: 950;
+  letter-spacing: 1.1px;
+  background: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #39d0ff 25%,
+    #f8d477 50%,
+    #39d0ff 75%,
+    #ffffff 100%
+  );
+  background-size: 250% auto;
+  background-position: 0% center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #39d0ff;
+  animation:
+    himalayasShine 5s linear infinite,
+    discoverReveal 1.1s ease both;
+  filter: drop-shadow(0 0 5px rgba(57, 208, 255, 0.2));
+}
+
+.siteLogo:hover .logoHimalayas {
+  animation-duration: 1.8s, 1.1s;
+  filter: drop-shadow(0 0 8px rgba(57, 208, 255, 0.55));
+}
+
+/* Smooth entrance */
+@keyframes discoverReveal {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Moving light across HIMALAYAS */
+@keyframes himalayasShine {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 250% center;
+  }
+}
+
+/* Responsive logo */
+@media (max-width: 900px) {
+  .siteLogo {
+    gap: 8px;
+  }
+
+  .logoImage {
+    height: 47px;
+    max-width: 115px;
+  }
+
+  .logoDiscover {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+  }
+
+  .logoHimalayas {
+    font-size: 16px;
+  }
+
+  .logoText {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 620px) {
+  .logoImage {
+    height: 43px;
+    max-width: 100px;
+  }
+
+  .logoDiscover {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .logoHimalayas {
+    font-size: 15px;
+    letter-spacing: 0.6px;
+  }
+}
+
+/* Respect reduced-motion settings */
+@media (prefers-reduced-motion: reduce) {
+  .logoDiscover,
+  .logoHimalayas {
+    animation: none;
+  }
+
+  .siteLogo,
+  .logoImage {
+    transition: none;
+  }
+}

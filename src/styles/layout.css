@@ -1,0 +1,215 @@
+/* ================================
+   DISCOVER HIMALAYAS
+   BLUE THEME — HEADER & FOOTER
+================================ */
+
+.site-header {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  min-height: 82px;
+  padding: 18px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  background: #102a43;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(217, 240, 255, 0.16);
+}
+
+.site-logo {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+}
+
+.site-logo span {
+  color: #69d2ff;
+  font-size: 11px;
+  letter-spacing: 5px;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 26px;
+}
+
+.main-nav a {
+  position: relative;
+  padding: 8px 0;
+  color: #e3edf7;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  transition: color 0.25s ease;
+}
+
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 0;
+  height: 2px;
+  background: #69d2ff;
+  transition: width 0.25s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: #69d2ff;
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after {
+  width: 100%;
+}
+
+/* Main page layout */
+
+.main-content {
+  min-height: 60vh;
+}
+
+/* Footer */
+
+.site-footer {
+  padding: 55px 5% 25px;
+  background: #0b1f33;
+  color: #ffffff;
+  text-align: center;
+  border-top: 1px solid rgba(105, 210, 255, 0.2);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 5px;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.footer-logo span {
+  color: #69d2ff;
+  font-size: 12px;
+  letter-spacing: 5px;
+}
+
+.footer-content > p {
+  margin-top: 18px;
+  line-height: 1.7;
+  color: #d7e5f2;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin: 28px 0;
+}
+
+.footer-links a {
+  color: #e3edf7;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-links a:hover {
+  color: #69d2ff;
+}
+
+.footer-content .copyright {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid #29445e;
+  color: #a9bdcf;
+  font-size: 13px;
+}
+
+/* Responsive header and footer */
+
+@media (max-width: 900px) {
+  .site-header {
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px 4%;
+  }
+
+  .main-nav {
+    justify-content: center;
+    gap: 12px 22px;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    padding: 18px 16px;
+  }
+
+  .site-logo {
+    font-size: 19px;
+  }
+
+  .main-nav {
+    gap: 8px 16px;
+  }
+
+  .main-nav a {
+    font-size: 11px;
+  }
+
+  .site-footer {
+    padding: 42px 20px 22px;
+  }
+
+  .footer-links {
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-nav a,
+  .main-nav a::after,
+  .footer-links a {
+    transition: none;
+  }
+}
+
+.main-nav {
+  position: relative;
+  overflow: visible;
+}
+
+.main-nav a.nav-link-active {
+  color: #69d2ff;
+  text-shadow: 0 0 14px rgba(105, 210, 255, 0.45);
+}
+
+.main-nav a {
+  transition:
+    color 250ms ease,
+    text-shadow 250ms ease;
+}
