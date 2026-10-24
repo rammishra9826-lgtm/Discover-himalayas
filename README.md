@@ -1,21 +1,36 @@
-<<<<<<< HEAD
-# React + Vite
+# Discover Himalayas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A website for exploring the Himalayas, built with React and Vite.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# Install dependencies
+npm install
 
-## Expanding the ESLint configuration
+# Start the dev server
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Discover-himalayas
-this is our second main project repo
->>>>>>> e399495382f3a915bd4c63308972e24a98173dca
+# Create a production build
+npm run build
+```
+
+## Project Structure
+
+```
+src/
+  components/
+  pages/
+  assets/
+```
+
+## Author
+
+Made by Puneet
