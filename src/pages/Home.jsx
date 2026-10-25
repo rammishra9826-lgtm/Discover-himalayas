@@ -112,7 +112,7 @@ const bikes = [
     tagline: "Built for the high passes.",
     description:
       "The newest all-rounder in the lineup. A liquid-cooled engine, long-travel suspension and a confident stance make it a natural choice for Ladakh and Spiti, on tarmac or off it.",
-    image: "public/images/bikes/REHimalayan450.png",
+    image: "/images/bikes/REHimalayan450.png",
     specs: [
       { label: "Engine", value: "452 cc" },
       { label: "Power", value: "40 PS" },
@@ -138,7 +138,7 @@ const bikes = [
     tagline: "Easy to ride, hard to forget.",
     description:
       "Light, friendly and refined. Its easy handling and steady thump make it a great pick for riders who want comfort over distance and a classic Royal Enfield feel.",
-    image: "public/images/bikes/RE350.png",
+    image: "/images/bikes/RE350.png",
     specs: [
       { label: "Engine", value: "349 cc" },
       { label: "Power", value: "20 PS" },
@@ -151,7 +151,7 @@ const bikes = [
     tagline: "The proven mountain workhorse.",
     description:
       "A tough, simple and dependable air-cooled single that has carried riders across the Himalayas for years. Strong low-end pull and easy repairs make it ideal for remote roads.",
-    image: "public/images/bikes/RE411.png",
+    image: "/images/bikes/RE411.png",
     specs: [
       { label: "Engine", value: "411 cc" },
       { label: "Power", value: "24 PS" },
