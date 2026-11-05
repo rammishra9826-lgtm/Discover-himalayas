@@ -44,9 +44,9 @@ const places = [
 ];
 
 const stats = [
-  { to: 30, suffix: "+", label: "Years on Himalayan roads" },
-  { to: 14, suffix: "", label: "Riders at most in a group" },
-  { to: 1994, suffix: "", label: "The year of our first tour" },
+  { to: 30, suffix: "+", label: "Years on Himalayan roads", shape: "hex", top: "More than", num: "30", word: "Years", sub: "on the road" },
+  { to: 14, suffix: "", label: "Riders at most in a group", shape: "shield", top: "At most", num: "14", word: "Riders", sub: "in a group" },
+  { to: 1994, suffix: "", label: "The year of our first tour", shape: "tall", top: "Since", num: "1994", word: "First", sub: "tour" },
 ];
 
 const storyGallery = [
@@ -82,8 +82,8 @@ const bikes = [
     tab: "Himalayan 450",
     tagline: "Built for the high passes.",
     description:
-      "The newest all-rounder in the lineup. A liquid-cooled engine, long-travel suspension and a confident stance make it a natural choice for Ladakh and Spiti, on tarmac or off it.",
-    image: "/images/bikes/REHimalayan450.png",
+      "The newest bike on the fleet and the default on the Himalayan tours. 452cc, 40 bhp, 21-inch front wheel, 230 mm of ground clearance. Tall enough for the water crossings on the Shyok road and happy at 5,600 m. Comprehensive insurance, fuel, oil and all replacement parts are included on every tour.",
+    image: "/images/bikes/RE450.png",
     specs: [
       { label: "Engine", value: "452 cc" },
       { label: "Power", value: "40 PS" },
@@ -121,7 +121,7 @@ const bikes = [
     tab: "RE 411",
     tagline: "The proven mountain workhorse.",
     description:
-      "A tough, simple and dependable air-cooled single that has carried riders across the Himalayas for years. Strong low-end pull and easy repairs make it ideal for remote roads.",
+      "The bike that carried our tours for years before the 450 arrived, and still on the fleet. 411cc, air-cooled, unhurried and very hard to upset. Lower seat than the 450, which some riders prefer on the long days. Same insurance, fuel, oil and spares included.",
     image: "/images/bikes/RE411.png",
     specs: [
       { label: "Engine", value: "411 cc" },
@@ -422,6 +422,205 @@ function Marquee() {
   );
 }
 
+// Stitched leather-patch badge (carbon texture, dashed amber stitching)
+const BADGE_SHAPES = {
+  hex: "100,10 186,56 186,164 100,210 14,164 14,56",
+  shield: "22,26 178,26 190,38 190,128 100,212 10,128 10,38",
+  tall: "100,8 168,34 184,70 184,152 100,212 16,152 16,70 32,34",
+};
+
+function StatBadge({ stat, id, active }) {
+  const points = BADGE_SHAPES[stat.shape];
+
+  return (
+    <div className="group mx-auto flex w-full max-w-[250px] flex-col items-center text-center">
+      <div className="relative aspect-[200/220] w-full transition duration-500 group-hover:-translate-y-2">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 200 220"
+          className="absolute inset-0 h-full w-full overflow-visible drop-shadow-[0_22px_18px_rgba(0,0,0,0.38)]"
+        >
+          <defs>
+            <linearGradient id={`${id}-fill`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#2c3438" />
+              <stop offset="1" stopColor="#0a0f12" />
+            </linearGradient>
+            <pattern id={`${id}-weave`} width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <rect width="6" height="6" fill="transparent" />
+              <rect width="3" height="6" fill="rgba(255,255,255,0.05)" />
+              <rect x="3" width="3" height="6" fill="rgba(0,0,0,0.25)" />
+            </pattern>
+            <radialGradient id={`${id}-shine`} cx="50%" cy="18%" r="65%">
+              <stop offset="0" stopColor="rgba(255,255,255,0.16)" />
+              <stop offset="1" stopColor="rgba(255,255,255,0)" />
+            </radialGradient>
+          </defs>
+
+          {/* body, thick same-colour stroke rounds the corners */}
+          <polygon points={points} fill={`url(#${id}-fill)`} stroke="#0a0f12" strokeWidth="12" strokeLinejoin="round" />
+          <polygon points={points} fill={`url(#${id}-weave)`} stroke="#0a0f12" strokeWidth="12" strokeLinejoin="round" />
+          <polygon points={points} fill={`url(#${id}-shine)`} />
+
+          {/* stitching */}
+          <g transform="translate(100 112) scale(0.9) translate(-100 -112)">
+            <polygon
+              points={points}
+              fill="none"
+              stroke="#e0974f"
+              strokeWidth="2"
+              strokeDasharray="7 5"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              vectorEffect="non-scaling-stroke"
+            />
+          </g>
+        </svg>
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 pb-3 pt-1">
+          <span className="dh-display text-[11px] font-semibold uppercase tracking-[0.32em] text-white/70 sm:text-xs">
+            {stat.top}
+          </span>
+
+          <span className="mt-1 flex w-full items-center justify-center gap-2">
+            <span aria-hidden="true" className="h-[2px] w-5 -skew-x-[30deg] bg-[#e0974f]" />
+            <span className="dh-display text-5xl font-bold leading-none text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.9)] sm:text-6xl">
+              {stat.num}
+            </span>
+            <span aria-hidden="true" className="h-[2px] w-5 skew-x-[30deg] bg-[#e0974f]" />
+          </span>
+
+          <span className="dh-display mt-1 text-3xl font-bold uppercase leading-none tracking-[0.04em] text-white sm:text-[2rem]">
+            {stat.word}
+          </span>
+          <span className="dh-display text-sm font-medium uppercase leading-tight tracking-[0.1em] text-white/80">
+            {stat.sub}
+          </span>
+        </div>
+      </div>
+
+      <span className="dh-display mt-8 text-4xl font-semibold leading-none text-[var(--dh-accent)] md:text-5xl">
+        <CountUp to={stat.to} suffix={stat.suffix} active={active} />
+      </span>
+      <span className="mt-3 text-base text-[var(--dh-text)] md:text-lg">{stat.label}</span>
+    </div>
+  );
+}
+
+// Cinematic intro text: eyebrow line draws in, paragraph develops word by
+// word out of a blur, key places glow amber, "You ride." lands last with a shimmer.
+const INTRO_TEXT =
+  "From the highest passes in {Ladakh} to the {Rajasthan} {desert}, the {Goa} {coast} and the jungles of {Assam}. Small groups, {Royal} {Enfields}, and a crew that has been part of the Indian biking scene since it started in the nineties. We handle the logistics, the permits and the spares.";
+
+function IntroStory({ active }) {
+  const reduce =
+    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const on = active || reduce;
+  const words = INTRO_TEXT.split(" ");
+  const ease = "cubic-bezier(0.2, 0.7, 0.2, 1)";
+  const step = 42; // ms between words
+  const base = 450; // ms before the first word
+
+  return (
+    <div className="relative max-w-4xl">
+      <style>{`
+        @keyframes dhIntroShimmer { from { background-position: 0% center; } to { background-position: 200% center; } }
+        @keyframes dhIntroGlow { 0%,100% { opacity: .55; transform: scale(1); } 50% { opacity: .9; transform: scale(1.08); } }
+        @media (prefers-reduced-motion: reduce) { .dh-intro-anim { animation: none !important; } }
+      `}</style>
+
+      {/* warm light that fades in behind the text, like a lamp coming on */}
+      <span
+        aria-hidden="true"
+        className="dh-intro-anim pointer-events-none absolute -left-24 top-1/2 h-[420px] w-[420px] -translate-y-1/2 rounded-full"
+        style={{
+          background: "radial-gradient(closest-side, rgba(224,151,79,0.28), rgba(224,151,79,0) 70%)",
+          filter: "blur(30px)",
+          opacity: on ? undefined : 0,
+          animation: on && !reduce ? "dhIntroGlow 6s ease-in-out 1.5s infinite" : "none",
+          transition: `opacity 1.6s ${ease}`,
+        }}
+      />
+
+      {/* eyebrow */}
+      <span
+        className="dh-display relative inline-flex items-center gap-3 text-sm font-semibold uppercase text-[#b5651d] sm:text-base"
+        style={{
+          letterSpacing: on ? "0.3em" : "0.7em",
+          opacity: on ? 1 : 0,
+          transition: reduce ? "none" : `letter-spacing 1.4s ${ease}, opacity 1s ease`,
+        }}
+      >
+        <span
+          className="h-px bg-current"
+          style={{
+            width: on ? 40 : 0,
+            transition: reduce ? "none" : `width 1s ${ease} 0.2s`,
+          }}
+        />
+        Guided motorcycle tours · since 1994
+      </span>
+
+      <div className="relative mt-7 pl-6 md:pl-9">
+        {/* amber rule draws top to bottom */}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-1 left-0 top-1 w-[3px] origin-top rounded-full"
+          style={{
+            background: "linear-gradient(180deg, #e0974f, #b5651d 60%, rgba(181,101,29,0))",
+            transform: on ? "scaleY(1)" : "scaleY(0)",
+            transition: reduce ? "none" : `transform 1.6s ${ease} 0.3s`,
+          }}
+        />
+
+        <p className="text-[clamp(1.35rem,2.4vw,1.9rem)] leading-[1.55] text-[#0f3a48]">
+          {words.map((raw, i) => {
+            const hl = raw.includes("{");
+            const text = raw.replace(/[{}]/g, "");
+            return (
+              <span key={`${text}-${i}`}>
+                <span
+                  className={`inline-block will-change-transform ${hl ? "font-medium text-[#b5651d]" : ""}`}
+                  style={{
+                    opacity: on ? 1 : 0,
+                    transform: on ? "none" : "translateY(0.55em)",
+                    filter: on ? "blur(0)" : "blur(10px)",
+                    transition: reduce
+                      ? "none"
+                      : `opacity 0.9s ${ease} ${base + i * step}ms, transform 0.9s ${ease} ${base + i * step}ms, filter 0.9s ease ${base + i * step}ms`,
+                  }}
+                >
+                  {text}
+                </span>{" "}
+              </span>
+            );
+          })}
+
+          <span
+            className="dh-display dh-intro-anim inline-block text-[1.25em] font-bold uppercase tracking-[0.08em]"
+            style={{
+              background: "linear-gradient(100deg, #b5651d 0%, #e0974f 30%, #ffd9a0 50%, #e0974f 70%, #b5651d 100%)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              opacity: on ? 1 : 0,
+              transform: on ? "none" : "scale(1.5) translateY(0.1em)",
+              filter: on ? "blur(0)" : "blur(14px)",
+              transformOrigin: "left center",
+              transition: reduce
+                ? "none"
+                : `opacity 1.1s ${ease} ${base + words.length * step + 250}ms, transform 1.1s ${ease} ${base + words.length * step + 250}ms, filter 1.1s ease ${base + words.length * step + 250}ms`,
+              animation: on && !reduce ? `dhIntroShimmer 4s linear ${(base + words.length * step) / 1000 + 1.6}s infinite` : "none",
+            }}
+          >
+            You ride.
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 // Intro paragraph + animated numbers
 function Intro() {
   const ref = useRef(null);
@@ -456,29 +655,13 @@ function Intro() {
         Ride
       </span>
 
-      <div className={`${wrap} relative grid items-center gap-14 lg:grid-cols-12`}>
-        <Reveal className="lg:col-span-7">
-          <Eyebrow>Guided motorcycle tours · since 1994</Eyebrow>
-          <p className="mt-6 border-l-4 border-[var(--dh-accent)] pl-6 text-[clamp(1.35rem,2.4vw,1.9rem)] leading-[1.5] text-[var(--dh-text)] md:pl-8">
-            From the highest passes in Ladakh to the Rajasthan desert, the Goa
-            coast and the jungles of Assam. Small groups, Royal Enfields, and a
-            crew that has been part of the Indian biking scene since it started
-            in the nineties. We handle the logistics, the permits and the
-            spares. <strong className="font-medium text-[var(--dh-accent)]">You ride.</strong>
-          </p>
-        </Reveal>
+      <div className={`${wrap} relative`}>
+        <IntroStory active={active} />
 
-        <div className="grid gap-4 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+        <div className="mt-16 grid grid-cols-1 gap-14 sm:grid-cols-3 sm:gap-6 md:mt-20 lg:gap-12">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} from="right" delay={i * 120}>
-              <div className="group flex items-center gap-5 rounded-2xl border border-[var(--dh-line)] bg-[var(--dh-surface)] p-6 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.5)] transition duration-300 hover:-translate-y-1 hover:border-[var(--dh-accent)] sm:flex-col sm:items-start lg:flex-row lg:items-center">
-                <span className="dh-display text-5xl font-semibold leading-none text-[var(--dh-accent)] md:text-6xl">
-                  <CountUp to={stat.to} suffix={stat.suffix} active={active} />
-                </span>
-                <span className="text-sm uppercase tracking-[0.12em] text-[var(--dh-muted)]">
-                  {stat.label}
-                </span>
-              </div>
+            <Reveal key={stat.label} from="zoom" delay={i * 140}>
+              <StatBadge stat={stat} id={`badge-${i}`} active={active} />
             </Reveal>
           ))}
         </div>
@@ -624,7 +807,7 @@ function RoyalEnfield() {
   return (
     <section className="relative overflow-hidden bg-[#0a1014] pb-14 pt-24 text-white md:pb-16 md:pt-32">
       <img
-        src={IMG.last}
+        src="public/images/bikes/RE350.png"
         alt=""
         aria-hidden="true"
         loading="lazy"
@@ -648,7 +831,7 @@ function RoyalEnfield() {
           <Reveal className="lg:col-span-3">
             <div className="group relative mb-8 aspect-[16/9] overflow-hidden rounded-3xl">
               <img
-                src={IMG.last}
+                src="public/images/bikes/RE350.png"
                 alt="Archive photo: Bullet 350 on a Himalayan road, 1990s"
                 loading="lazy"
                 className="h-full w-full object-cover grayscale transition duration-[1400ms] group-hover:scale-105 group-hover:grayscale-0"
@@ -1196,7 +1379,7 @@ function Experience() {
       className="relative flex min-h-[80vh] items-center overflow-hidden bg-[#0a1014] py-24 text-white"
     >
       <img
-        src={IMG.last}
+        src="public/images/homepage/buttom.avif"
         alt="A scenic mountain landscape"
         loading="lazy"
         style={{ transform: `translateY(${y}px) scale(1.2)` }}
