@@ -1,0 +1,112 @@
+// src/data/toursData.js
+export const ORDER = ["ladakh","mustang","heaven","tibet","bhutan","rajasthan","goa","k2k"];
+
+export const TOURS = {
+  ladakh: {
+    name: "To the Highest Road on Earth",
+    region: "Ladakh",
+    country: "India",
+    days: 15,
+    alt: "5,883 m",
+    blurb: "A 15-day Royal Enfield journey through Ladakh's highest motorable passes, ancient valleys, Buddhist monasteries and three lakes above 4,000 metres.",
+    rider: 3195,
+    pillion: 2695,
+    dates: [["25 Jul – 8 Aug 2027","open"],["8 Aug – 22 Aug 2027","open"]],
+  },
+  mustang: {
+    name: "Upper Mustang & Manang",
+    region: "Upper Mustang",
+    country: "Nepal",
+    days: 15,
+    alt: "4,660 m",
+    blurb: "A 15-day journey through the Annapurna region and into the ancient kingdom of Upper Mustang, riding Royal Enfields across some of Nepal's most challenging mountain roads.",
+    rider: null,
+    pillion: null,
+    dates: [["11 Apr – 25 Apr 2027","open"]],
+  },
+  heaven: {
+    name: "Highway through Heaven",
+    region: "Zanskar",
+    country: "India",
+    days: 14,
+    alt: "5,390 m",
+    blurb: "A 14-day Royal Enfield journey from the Kullu Valley through Lahaul and Zanskar, across newly opened high-altitude passes and into the Indus Valley and Ladakh.",
+    rider: null,
+    pillion: null,
+    dates: [["18 Jul – 31 Jul 2027","open"]],
+  },
+  tibet: {
+    name: "Little Tibet",
+    region: "Spiti & Kinnaur",
+    country: "India",
+    days: 15,
+    alt: "5,000 m",
+    blurb: "A 15-day Royal Enfield journey through Kinnaur and Spiti, following the ancient Hindustan–Tibet trade route through high mountain valleys, remote villages and the Tibetan plateau.",
+    rider: null,
+    pillion: null,
+    dates: [["4 Jul – 18 Jul 2027","open"],["5 Sep – 19 Sep 2027","open"]],
+  },
+  bhutan: {
+    name: "Land of the Thunder Dragon",
+    region: "Bhutan",
+    country: "Bhutan",
+    days: 11,
+    alt: "3,990 m",
+    blurb: "An 11-day Royal Enfield journey through Bhutan's winding mountain roads, ancient monasteries, remote valleys and some of the highest motorable passes in the country.",
+    rider: null,
+    pillion: null,
+    dates: [["Dates to be announced","request"]],
+  },
+  rajasthan: {
+    name: "Royal Rajasthan Ride",
+    region: "Rajasthan",
+    country: "India",
+    days: 13,
+    alt: "Lowland",
+    blurb: "A 13-day Royal Enfield journey through the Land of Kings, travelling from Delhi through wildlife reserves, historic forts, desert landscapes and the heritage towns of Rajasthan.",
+    rider: null,
+    pillion: null,
+    dates: [["9 Jan – 21 Jan 2027","full"]],
+  },
+  goa: {
+    name: "The Ghats & Goa",
+    region: "Western Ghats",
+    country: "India",
+    days: 14,
+    alt: "Lowland",
+    blurb: "A 14-day Royal Enfield journey through the Western Ghats, Deccan Plateau and Konkan Coast, combining winding mountain roads, wildlife, ancient kingdoms and the beaches of Goa.",
+    rider: null,
+    pillion: null,
+    dates: [["4 Jan – 17 Jan 2027","open"]],
+  },
+  k2k: {
+    name: "A Wildlife & Spice Trail",
+    region: "Konkan to Kanyakumari",
+    country: "India",
+    days: 15,
+    alt: "2,673 m",
+    blurb: "A 15-day Royal Enfield journey from the beaches of Goa to the southernmost tip of India, travelling through the Western Ghats, wildlife reserves, tea and spice plantations, historic towns and colonial hill stations.",
+    rider: null,
+    pillion: null,
+    dates: [["23 Jan – 6 Feb 2027","open"],["6 Feb – 20 Feb 2027 · reversed route","open"]],
+  },
+};
+
+export const PAST = [
+  { when: "Aug 2026", tour: "ladakh", riders: "[n] riders from [countries]", note: "[A line about this departure — weather, a standout day, something that happened.]" },
+  { when: "Jul 2026", tour: "tibet", riders: "[n] riders from [countries]", note: "[A line about this departure.]" },
+  { when: "Feb 2026", tour: "k2k", riders: "[n] riders from [countries]", note: "[A line about this departure.]" },
+  { when: "Jan 2026", tour: "rajasthan", riders: "[n] riders from [countries]", note: "[A line about this departure.]" },
+  { when: "Jan 2026", tour: "goa", riders: "[n] riders from [countries]", note: "[A line about this departure.]" },
+  { when: "Aug 2025", tour: "ladakh", riders: "[n] riders from [countries]", note: "[A line about this departure.]" },
+];
+
+export const STATUS = {
+  open: { label: "Open", cls: "bg-[#D9EEF0] text-[#145C66] dark:bg-[#1F8A99]/25 dark:text-[#8ED8E3]" },
+  filling: { label: "Filling up", cls: "bg-[#D9EEF0] text-[#145C66] dark:bg-[#1F8A99]/25 dark:text-[#8ED8E3]" },
+  last: { label: "Last seats", cls: "bg-[#CFDFE6] text-[#26323A] dark:bg-slate-600/40 dark:text-slate-100" },
+  full: { label: "Full · waitlist", cls: "bg-[#F3E6D4] text-[#7A4712] dark:bg-[#C4792E]/25 dark:text-[#F3C48A]" },
+  request: { label: "On request", cls: "bg-slate-200 text-slate-800 dark:bg-slate-700 dark:text-slate-100" },
+};
+
+export const eur = (n) => (n == null ? "On request" : "€" + n.toLocaleString("en-IE"));

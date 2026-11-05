@@ -1,0 +1,123 @@
+.page {
+  --ink: #26323a;
+  --mute: #66747c;
+  --line: #dde2e0;
+  --ochre: #c4792e;
+  --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --body: "Lora", Georgia, "Times New Roman", serif;
+
+  font-family: var(--body);
+  color: var(--ink);
+  line-height: 1.65;
+}
+
+.page h1,
+.page h3 {
+  font-family: var(--display);
+  font-weight: 600;
+  line-height: 1;
+  margin: 0;
+}
+
+.wrap {
+  width: min(1180px, 100% - 48px);
+  margin-inline: auto;
+}
+
+.section {
+  padding: 64px 0 96px;
+}
+
+.page h1 {
+  font-size: clamp(40px, 6vw, 72px);
+}
+
+.lead {
+  font-size: 20px;
+  max-width: 62ch;
+  color: var(--mute);
+  margin: 16px 0 32px;
+}
+
+.postList {
+  display: block;
+}
+
+.post {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+
+.frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  border-radius: 4px;
+  background: linear-gradient(170deg, #9fb6c1, #5c7a88 60%, #3c5461);
+}
+
+.frameSand {
+  background: linear-gradient(170deg, #e0c9a8, #b8905f 60%, #8a6238);
+}
+
+.label {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  font-family: var(--display);
+  font-size: 15px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.02em;
+}
+
+.kicker {
+  font-family: var(--display);
+  font-size: 15px;
+  color: var(--ochre);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.post h3 {
+  font-size: 26px;
+  margin: 4px 0 6px;
+  line-height: 1.1;
+}
+
+.post p {
+  font-size: 15.5px;
+  color: var(--mute);
+  margin: 0;
+}
+
+.soon {
+  display: inline-block;
+  margin-top: 8px;
+  font-family: var(--display);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mute);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+
+@media (max-width: 700px) {
+  .post {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    width: calc(100% - 32px);
+  }
+}

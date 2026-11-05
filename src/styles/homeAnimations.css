@@ -1,0 +1,139 @@
+/* homeAnimations.css — fonts, theme tokens and keyframes for the Home page.
+   Put in src/styles/ . Everything else on the page is Tailwind utility classes. */
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap");
+
+.dh-page {
+  --dh-bg: #fbfaf7;
+  --dh-alt: #f1eee7;
+  --dh-surface: #ffffff;
+  --dh-text: #1f2a31;
+  --dh-muted: #55646c;
+  --dh-line: #e0e4e2;
+  --dh-accent: #b8651c;
+  background: var(--dh-bg);
+  color: var(--dh-text);
+  font-family: "Lora", Georgia, "Times New Roman", serif;
+}
+.dark .dh-page {
+  --dh-bg: #0d1519;
+  --dh-alt: #121d22;
+  --dh-surface: #172329;
+  --dh-text: #eef3f5;
+  --dh-muted: #aab9c0;
+  --dh-line: #26353c;
+  --dh-accent: #e0974f;
+}
+.dh-display {
+  font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+}
+
+/* marquee ribbon */
+@keyframes dh-marquee { to { transform: translateX(-50%); } }
+.dh-marquee { animation: dh-marquee 38s linear infinite; }
+.dh-marquee-wrap:hover .dh-marquee { animation-play-state: paused; }
+
+/* floating bike / badges */
+@keyframes dh-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(-.6deg); }
+}
+.dh-floaty { animation: dh-float 6s ease-in-out infinite; }
+
+@keyframes dh-spin-slow { to { transform: rotate(360deg); } }
+.dh-spin-slow { animation: dh-spin-slow 28s linear infinite; }
+
+/* slide animations for the bike gallery */
+@keyframes dh-in-next { from { opacity: 0; transform: translateX(60px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes dh-in-prev { from { opacity: 0; transform: translateX(-60px) scale(.96); } to { opacity: 1; transform: none; } }
+.dh-slide-next { animation: dh-in-next .7s cubic-bezier(.2,.7,.2,1) both; }
+.dh-slide-prev { animation: dh-in-prev .7s cubic-bezier(.2,.7,.2,1) both; }
+
+/* progress bar fill (5s) */
+@keyframes dh-fill { from { width: 0; } to { width: 100%; } }
+.dh-fill { animation: dh-fill linear forwards; }
+
+/* testimonial swap */
+@keyframes dh-fade-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.dh-fade-up { animation: dh-fade-up .7s cubic-bezier(.2,.7,.2,1) both; }
+
+/* shine sweep on buttons */
+.dh-btn-shine { position: relative; overflow: hidden; isolation: isolate; }
+.dh-btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: skewX(-20deg);
+  transition: left .8s ease;
+  z-index: -1;
+}
+.dh-btn-shine:hover::after { left: 130%; }
+
+/* dashed route that draws itself */
+@keyframes dh-dash { to { stroke-dashoffset: 0; } }
+.dh-route path { stroke-dasharray: 8 12; stroke-dashoffset: 400; animation: dh-dash 6s linear infinite; }
+
+/* pulsing ring */
+@keyframes dh-ring { 0% { transform: scale(.9); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
+.dh-ring { animation: dh-ring 2.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dh-road-text, .dh-lane, .dh-pop, .dh-marquee, .dh-floaty, .dh-spin-slow, .dh-slide-next, .dh-slide-prev,
+  .dh-fade-up, .dh-route path, .dh-ring { animation: none !important; }
+}
+
+/* ---------- section headings (real CSS so global h2/h3 rules can't override) ---------- */
+.dh-page .dh-title {
+  font-family: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.015em;
+  line-height: 0.98;
+  margin: 0;
+  font-size: clamp(2.9rem, 7vw, 5.75rem) !important;
+  color: var(--dh-text) !important;
+}
+.dh-page .dh-title--light { color: #ffffff !important; }
+.dh-page .dh-title .dh-accent { color: var(--dh-accent) !important; }
+.dh-page .dh-title--light .dh-accent { color: #e0974f !important; }
+.dh-page .dh-title--sm   { font-size: clamp(2rem, 3.8vw, 2.9rem) !important; letter-spacing: 0.03em; }
+.dh-page .dh-title--md   { font-size: clamp(2.8rem, 5.5vw, 4.4rem) !important; }
+.dh-page .dh-title--name { font-size: clamp(1.7rem, 2.6vw, 2.2rem) !important; letter-spacing: 0.05em; line-height: 1.05; }
+
+/* ---------- road marquee ---------- */
+.dh-road {
+  background: linear-gradient(180deg, #12171a 0%, #1c2226 50%, #12171a 100%);
+}
+.dh-road::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 6px 6px;
+  pointer-events: none;
+}
+.dh-road-text {
+  color: #f7f1e6 !important;
+  display: inline-block;
+  text-shadow: 0 28px 16px rgba(0,0,0,.7), 0 0 30px rgba(224,151,79,.25);
+  animation: dh-bob 3.6s ease-in-out infinite;
+}
+@keyframes dh-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.dh-lane {
+  background-image: repeating-linear-gradient(90deg, #f3d9a8 0 70px, transparent 70px 140px);
+  background-size: 140px 100%;
+  animation: dh-lane 1.4s linear infinite;
+}
+@keyframes dh-lane { to { background-position-x: -140px; } }
+
+/* testimonial photo pop-in */
+@keyframes dh-pop {
+  0% { opacity: 0; transform: scale(.5); }
+  70% { opacity: 1; transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.dh-pop { animation: dh-pop .8s cubic-bezier(.2,.8,.2,1) both; }

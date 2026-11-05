@@ -1,14 +1,13 @@
-
 import { useLayoutEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { name: "Home", path: "/" },
-  { name: "Our Tours", path: "/tours" },
-  { name: "Destinations", path: "/destinations" },
-  { name: "About Us", path: "/about" },
-  { name: "Gallery", path: "/gallery" },
+  { name: "Past Tours", path: "/past-tours" },
+  { name: "Upcoming Tours", path: "/upcoming-tours" },
+  { name: "Custom Tours", path: "/custom-tours" },
+  { name: "Journal", path: "/journal" },
+  { name: "FAQ", path: "/faq" },
   { name: "Contact", path: "/contact" },
 ];
 
@@ -19,19 +18,18 @@ export default function Header() {
   const [bikePosition, setBikePosition] = useState(0);
   const [positionReady, setPositionReady] = useState(false);
 
-  const activePath =
-    location.pathname === "/"
-      ? "/"
-      : location.pathname.startsWith("/tours/")
-        ? "/tours"
-        : location.pathname;
+  const activePath = location.pathname;
 
   useLayoutEffect(() => {
     const updateBikePosition = () => {
       const nav = navRef.current;
       const activeLink = linkRefs.current[activePath];
 
-      if (!nav || !activeLink) return;
+      // Agar current page navbar me nahi hai (jaise Home), bike chhupa do
+      if (!nav || !activeLink) {
+        setPositionReady(false);
+        return;
+      }
 
       const navRect = nav.getBoundingClientRect();
       const linkRect = activeLink.getBoundingClientRect();
@@ -68,12 +66,8 @@ export default function Header() {
         />
 
         <span className={styles.logoText}>
-          <span className={styles.logoDiscover}>
-            DISCOVER
-          </span>
-          <span className={styles.logoHimalayas}>
-            HIMALAYAS
-          </span>
+          <span className={styles.logoDiscover}>DISCOVER</span>
+          <span className={styles.logoHimalayas}>HIMALAYAS</span>
         </span>
       </NavLink>
 
@@ -87,19 +81,21 @@ export default function Header() {
           <NavLink
             key={link.path}
             to={link.path}
-            end={link.path === "/"}
             ref={(element) => {
               linkRefs.current[link.path] = element;
             }}
             className={({ isActive }) =>
-              `${styles.navLink} ${
-                isActive ? styles.navLinkActive : ""
-              }`
+              `${styles.navLink} ${isActive ? styles.navLinkActive : ""}`
             }
           >
             {link.name}
           </NavLink>
         ))}
+
+        {/* Ask about a tour button */}
+        <Link to="/contact" className={styles.askButton}>
+          Ask about a tour
+        </Link>
 
         {/* Animated bike indicator */}
         <div

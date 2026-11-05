@@ -3,108 +3,79 @@ import { Link } from "react-router-dom";
 
 import {
   ArrowUpRight,
-  Compass,
-  ShieldCheck,
-  Wrench,
-  BedDouble,
-  Mountain,
   ArrowLeft,
   ArrowRight,
-  Gauge,
-  Fuel,
-  Truck,
-  Utensils,
   ZoomIn,
+  Compass,
+  Wrench,
+  Package,
+  Hammer,
+  Truck,
+  Heart,
+  Wind,
 } from "lucide-react";
-import styles from "../styles/HomeHero.module.css";
+import styles from "../styles/HomeHero.module.css"; // only the video hero still uses this file
+import "../styles/homeAnimations.css";
 
-const tours = [
-  {
-    title: "Highway to Heaven",
-    location: "Himalayan Adventure",
-    description:
-      "Ride through spectacular mountain roads and discover the magic of the Himalayas.",
-    image:
-      "images/homepage/heaven.jpeg",
-    slug: "highway-to-heaven",
-  },
-  {
-    title: "Little Tibet Tour",
-    location: "Ladakh",
-    description:
-      "Explore dramatic landscapes, high mountain passes and the unique culture of Ladakh.",
-    image:
-      "images/homepage/tibbat.jpeg",
-    slug: "little-tibet-tour",
-  },
-  {
-    title: "Top of the World Tour",
-    location: "High Mountain Routes",
-    description:
-      "Experience an unforgettable journey through extraordinary mountain scenery.",
-    image:
-      "images/homepage/top.jpeg",
-    slug: "top-of-the-world-tour",
-  },
+/* ==================================================================
+   DATA — change photos / text here
+   Photos below use your existing /images/homepage/* files as
+   temporary pictures. Replace the paths whenever you like.
+================================================================== */
+
+const IMG = {
+  top: "/images/homepage/top.jpeg",
+  heaven: "/images/homepage/heaven.jpeg",
+  tibbat: "/images/homepage/tibbat.jpeg",
+  first: "/images/homepage/first.jpeg",
+  last: "/images/homepage/last.jpeg",
+};
+
+const places = [
+  "Ladakh",
+  "Zanskar",
+  "Spiti",
+  "Nepal",
+  "Bhutan",
+  "Rajasthan",
+  "South India",
+  "Goa",
+  "Assam",
 ];
 
-const reasons = [
-  {
-    number: "01",
-    title: "Local Knowledge",
-    text: "Thoughtfully planned journeys informed by a deep appreciation of the mountains.",
-  },
-  {
-    number: "02",
-    title: "Adventure & Freedom",
-    text: "Discover remarkable landscapes and enjoy the spirit of travelling by motorcycle.",
-  },
-  {
-    number: "03",
-    title: "Your Journey, Your Way",
-    text: "Choose a tour or contact our team to discuss a customised adventure.",
-  },
+const stats = [
+  { to: 30, suffix: "+", label: "Years on Himalayan roads" },
+  { to: 14, suffix: "", label: "Riders at most in a group" },
+  { to: 1994, suffix: "", label: "The year of our first tour" },
 ];
 
-const tourHighlights = [
-  {
-    number: "01",
-    title: "Expert Ride Leaders",
-    description:
-      "Professional guides with decades of experience, skilled on challenging Himalayan terrain and focused on your safety.",
-    icon: Compass,
-  },
-  {
-    number: "02",
-    title: "The Freedom to Ride",
-    description:
-      'Enjoy a flexible "free-riding" style with designated checkpoints, giving you the freedom to ride at your own pace.',
-    icon: Mountain,
-  },
-  {
-    number: "03",
-    title: "Dedicated Mechanical Support",
-    description:
-      "An experienced professional mechanic travels with every tour to help keep your motorcycle in top condition throughout the journey.",
-    icon: Wrench,
-  },
-  {
-    number: "04",
-    title: "Hand-Picked Stays",
-    description:
-      "Stay in carefully selected hotels, heritage guesthouses and scenic mountain camps in breathtaking locations.",
-    icon: BedDouble,
-  },
-  {
-    number: "05",
-    title: "Rides Built for Everyone",
-    description:
-      "Choose Adventure, Discovery, Laid-Back or a Custom Route. Every journey is designed to create lasting memories.",
-    icon: ShieldCheck,
-  },
+const storyGallery = [
+  { label: "Drone still: Pangong Tso shoreline, bikes in frame", image: IMG.top },
+  { label: "Rider portrait, Chang La", image: IMG.heaven },
+  { label: "Prayer flags, Khardung La summit", image: IMG.tibbat },
+  { label: "Group at Tso Moriri camp", image: IMG.first },
+  { label: "Shyok road water crossing", image: IMG.last },
 ];
 
-// BIKE GALLERY: change image paths / text here
+const timeline = [
+  { year: "Early 1950s", text: "The Indian Army orders several hundred 350cc Bullets to patrol the new border roads." },
+  { year: "1955", text: "Enfield of Redditch sets up assembly in Madras." },
+  { year: "1970", text: "The English company folds. The Indian one carries on." },
+  { year: "1994", text: "Eicher takes over, the same year we led our first tour." },
+  { year: "2008", text: "The Classic arrives." },
+  { year: "2016", text: "The Himalayan 411, the first purpose-built adventure bike." },
+  { year: "Now", text: "The liquid-cooled Himalayan 450." },
+];
+
+const supportItems = [
+  { label: "Mechanic", icon: Wrench },
+  { label: "Spares", icon: Package },
+  { label: "Tools", icon: Hammer },
+  { label: "Luggage", icon: Truck },
+  { label: "First aid", icon: Heart },
+  { label: "Oxygen", icon: Wind },
+];
+
 const bikes = [
   {
     name: "Himalayan 450",
@@ -160,9 +131,590 @@ const bikes = [
   },
 ];
 
+// Demo content: replace these sample reviews/photos with real, approved customer stories.
+const testimonials = [
+  {
+    name: "Bob Van Aert, ",
+    location: " Belgium",
+    tour: "Ladakh Expedition",
+    image: "/images/review/Bob Van Aert, Belgium.avif",
+    review: "The Little Tibet tour is a stunning journey where every turn reveals stunning vistas of formidable glaciers, picturesque mountains, deep gorges, and turquoise blue waters. Fantastic experience...with a very cool crew...recommended between the chaff!!!",
+  },
+  {
+    name: "Neil",
+    location: "Germany",
+    tour: "Spiti Valley Tour",
+    image: "/images/review/Neil, Germany.avif",
+    review: "Riding the tour from Ladakh, with my father and my German friends was an experience of a lifetime ! Unique monasteries, spectacular views, friendly people…and what a ride! Vinod and his team provided a very special tour.  Everything was very well organised and prepared. Due to Vinod’s experience and his very special open and friendly nature,  we got connected to the land and its people in no time wherever we went. For sure we all will take this experience along as a treasure for the years to come.",
+  },
+  {
+    name: "Thierry",
+    location: "Belgium",
+    tour: "Classic Ladakh Ride",
+    image: "/images/review/Thierry, Belgium.avif",
+    review: "It is unimaginable what Vinod and his crew did for us during this fabulous “Little Tibet” trip. After travelling India for many years, I thought it would be hard to impress me. I was wrong. Great bikes, great guiding, unbeatable food and accommodation and fantastic interaction with local people. I want more …",
+  },
+  {
+    name: "Alex and Katty",
+    location: "La Bourgogne",
+    tour: "Himalayan Discovery",
+    image: "/images/review/Alex and Katty, La Bourgogne, France.avif",
+    review: "What a motorcycle trip it was  through Goa and the south of India !! Every motorcyclist can only dream of this. Vinod and Nadia took us to incredible places which filled us with delight – even as experienced India travellers (we undertook a dozen individual trips earlier).",
+  },
+  {
+    name: "Bernie",
+    location: " Belgium",
+    tour: "High Mountain Routes",
+    image: "/images/review/Bernie, Belgium.avif",
+    review: "My experience was so amazing fantastic awesomeI have no words to explain itIm into adventure and like to take challenges I had the opportunity to ride with Vinod to Spiti Little Tibet It was all magic and Spirituality at the same time So close to mother earth all the time every night in comfortable places in beautiful nature On the way back riding over one of the most dangerous tracksin the world the ROHTANG Pass Wet to the bones defying the muddy misty Rohtang road that was fun Yeahh an absolute must to experience in a lifetime Ill be there for another trip promise",
+  },
+  {
+    name: "Didier Ravyts, ",
+    location: "Belgium",
+    tour: "Spiti Adventure",
+    image: "/images/review/Didier Ravyts, Belgium.avif",
+    review: "Everything felt personal and well considered, from the itinerary to the little breaks along the way. The landscapes were beautiful and the experience felt truly authentic.",
+  },
+  {
+    name: "Anders, Sweden",
+    location: "Sweden",
+    tour: "Ladakh Tour",
+    image: "/images/review/Anders, Sweden.avif",
+    review: "The perfect combination of riding, culture and breathtaking views. The crew knew the region exceptionally well and helped us enjoy the journey with confidence.",
+  },
+  {
+    name: "Chloe Martin",
+    location: "France",
+    tour: "Himalayan Adventure",
+    image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=360&h=360&q=85",
+    review: "I loved the feeling of being far away from everyday life. Each day brought a new view, a new road and another reason to be glad I booked this trip.",
+  },
+  {
+    name: "James Carter",
+    location: "New Zealand",
+    tour: "Top of the World Tour",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=360&h=360&q=85",
+    review: "A big adventure made easy by a professional team. The route was extraordinary, the logistics were reliable and the memories will stay with me for years.",
+  },
+  {
+    name: "Aisha Khan",
+    location: "United Arab Emirates",
+    tour: "Custom Himalayan Ride",
+    image: "https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?auto=format&fit=crop&w=360&h=360&q=85",
+    review: "The custom itinerary matched exactly what we hoped for. We got to explore at our own pace while knowing help was always nearby. I would recommend the experience to any adventure rider.",
+  },
+];
+
 const BIKE_SLIDE_MS = 5000;
 
-// BIKE GALLERY: auto-changes every 5 seconds, tap to zoom the description
+/* ==================================================================
+   SMALL SHARED PIECES
+================================================================== */
+
+const wrap = "mx-auto w-full max-w-7xl px-5 sm:px-8";
+
+const btnBase =
+  "dh-btn-shine dh-display inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-lg font-semibold uppercase tracking-[0.12em] transition duration-300 hover:-translate-y-0.5";
+const btnPrimary = `${btnBase} bg-[#e0974f] text-[#10181c] hover:shadow-[0_18px_40px_-14px_rgba(224,151,79,0.85)]`;
+const btnLight = `${btnBase} bg-white text-[#10181c] hover:shadow-[0_18px_40px_-14px_rgba(255,255,255,0.5)]`;
+const btnGhost = `${btnBase} border-2 border-white/80 text-white hover:bg-white/10`;
+const btnLake = `${btnBase} bg-[#167a88] text-white hover:bg-[#1b8e9f] hover:shadow-[0_18px_40px_-14px_rgba(22,122,136,0.9)]`;
+
+// Fades / slides a block in once it scrolls into view (respects reduced motion).
+function Reveal({ as: Tag = "div", className = "", delay = 0, from = "up", children }) {
+  const ref = useRef(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return undefined;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce || !("IntersectionObserver" in window)) {
+      setShown(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const hidden = {
+    up: "translate-y-10",
+    left: "-translate-x-12",
+    right: "translate-x-12",
+    zoom: "scale-95",
+  }[from];
+
+  return (
+    <Tag
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-[900ms] ease-out ${
+        shown ? "translate-x-0 translate-y-0 scale-100 opacity-100" : `opacity-0 ${hidden}`
+      } ${className}`}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+// Section heading. Uses real CSS classes (see homeAnimations.css) so global
+// h2/h3 rules in the project can't shrink it or turn it white-on-white.
+function Title({ as: Tag = "h2", light = false, size = "", id, className = "", style, children }) {
+  return (
+    <Tag
+      id={id}
+      style={style}
+      className={`dh-title ${light ? "dh-title--light" : ""} ${size ? `dh-title--${size}` : ""} ${className}`}
+    >
+      {children}
+    </Tag>
+  );
+}
+
+function Eyebrow({ children, light = false, className = "" }) {
+  return (
+    <span
+      className={`dh-display inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] sm:text-base ${
+        light ? "text-[#e0974f]" : "text-[var(--dh-accent)]"
+      } ${className}`}
+    >
+      <span className="h-px w-10 bg-current" />
+      {children}
+    </span>
+  );
+}
+
+// Counts up from 0 once `active` becomes true.
+function CountUp({ to, suffix = "", active }) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!active) return undefined;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setValue(to);
+      return undefined;
+    }
+
+    let frame;
+    const duration = 1800;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(to * eased));
+      if (progress < 1) frame = window.requestAnimationFrame(tick);
+    };
+
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [active, to]);
+
+  return (
+    <>
+      {value}
+      {suffix}
+    </>
+  );
+}
+
+// Thin amber progress bar along the top of the page.
+function ScrollProgress() {
+  const barRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? window.scrollY / max : 0;
+      if (barRef.current) barRef.current.style.transform = `scaleX(${ratio})`;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div
+      ref={barRef}
+      aria-hidden="true"
+      className="fixed left-0 top-0 z-[70] h-[3px] w-full origin-left scale-x-0 bg-gradient-to-r from-[#e0974f] via-[#f3d9a8] to-[#167a88]"
+    />
+  );
+}
+
+// Moves a background image slower than the page for a depth effect.
+function useParallax(speed = 0.12) {
+  const ref = useRef(null);
+  const [y, setY] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
+    let raf;
+    const update = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const rect = ref.current?.getBoundingClientRect();
+        if (!rect) return;
+        const offset = rect.top + rect.height / 2 - window.innerHeight / 2;
+        setY(offset * speed * -1);
+      });
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [speed]);
+
+  return [ref, y];
+}
+
+/* ==================================================================
+   SECTIONS
+================================================================== */
+
+// Destinations painted on a moving road — text hovers above the asphalt
+function Marquee() {
+  const items = [...places, ...places];
+
+  return (
+    <div
+      aria-label="Destinations we ride"
+      className="dh-road relative z-10 overflow-hidden border-y-4 border-white/80"
+    >
+      <div className="dh-marquee-wrap relative py-10 sm:py-14">
+        <div className="dh-marquee flex w-max items-center whitespace-nowrap">
+          {items.map((place, i) => (
+            <span key={`${place}-${i}`} className="flex items-center gap-12 pr-12 sm:gap-20 sm:pr-20">
+              <span
+                className="dh-road-text dh-display text-5xl font-bold uppercase tracking-[0.14em] sm:text-7xl"
+                style={{ animationDelay: `${(i % places.length) * 0.35}s` }}
+              >
+                {place}
+              </span>
+              <span aria-hidden="true" className="h-3 w-3 shrink-0 rounded-full bg-[#e0974f] shadow-[0_0_16px_#e0974f]" />
+            </span>
+          ))}
+        </div>
+
+        {/* dashed lane line */}
+        <div aria-hidden="true" className="dh-lane pointer-events-none absolute inset-x-0 bottom-3 h-[5px] sm:bottom-4" />
+      </div>
+    </div>
+  );
+}
+
+// Intro paragraph + animated numbers
+function Intro() {
+  const ref = useRef(null);
+  const [active, setActive] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || !("IntersectionObserver" in window)) {
+      setActive(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setActive(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={ref} className="relative overflow-hidden bg-[var(--dh-bg)] pb-40 pt-24 md:pb-52 md:pt-32">
+      {/* big faded word */}
+      <span
+        aria-hidden="true"
+        className="dh-display pointer-events-none absolute -left-4 top-6 select-none text-[22vw] font-bold uppercase leading-none text-[var(--dh-text)] opacity-[0.04]"
+      >
+        Ride
+      </span>
+
+      <div className={`${wrap} relative grid items-center gap-14 lg:grid-cols-12`}>
+        <Reveal className="lg:col-span-7">
+          <Eyebrow>Guided motorcycle tours · since 1994</Eyebrow>
+          <p className="mt-6 border-l-4 border-[var(--dh-accent)] pl-6 text-[clamp(1.35rem,2.4vw,1.9rem)] leading-[1.5] text-[var(--dh-text)] md:pl-8">
+            From the highest passes in Ladakh to the Rajasthan desert, the Goa
+            coast and the jungles of Assam. Small groups, Royal Enfields, and a
+            crew that has been part of the Indian biking scene since it started
+            in the nineties. We handle the logistics, the permits and the
+            spares. <strong className="font-medium text-[var(--dh-accent)]">You ride.</strong>
+          </p>
+        </Reveal>
+
+        <div className="grid gap-4 sm:grid-cols-3 lg:col-span-5 lg:grid-cols-1">
+          {stats.map((stat, i) => (
+            <Reveal key={stat.label} from="right" delay={i * 120}>
+              <div className="group flex items-center gap-5 rounded-2xl border border-[var(--dh-line)] bg-[var(--dh-surface)] p-6 shadow-[0_18px_50px_-30px_rgba(0,0,0,0.5)] transition duration-300 hover:-translate-y-1 hover:border-[var(--dh-accent)] sm:flex-col sm:items-start lg:flex-row lg:items-center">
+                <span className="dh-display text-5xl font-semibold leading-none text-[var(--dh-accent)] md:text-6xl">
+                  <CountUp to={stat.to} suffix={stat.suffix} active={active} />
+                </span>
+                <span className="text-sm uppercase tracking-[0.12em] text-[var(--dh-muted)]">
+                  {stat.label}
+                </span>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      {/* mountain ridge into the next section */}
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 140"
+        preserveAspectRatio="none"
+        className="absolute inset-x-0 bottom-0 h-24 w-full text-[var(--dh-alt)] md:h-36"
+      >
+        <path
+          fill="currentColor"
+          d="M0 140V92l110-48 90 38 130-70 120 82 100-46 140 70 120-92 130 80 110-50 130 72 130-60V140Z"
+        />
+      </svg>
+    </section>
+  );
+}
+
+// Bento photo gallery
+function Gallery() {
+  const spans = [
+    "col-span-2 row-span-2",
+    "",
+    "row-span-2",
+    "",
+    "col-span-2 md:col-span-4",
+  ];
+
+  return (
+    <section className="bg-[var(--dh-alt)] pb-24 md:pb-32">
+      <div className={wrap}>
+        <Reveal className="mb-10 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <Eyebrow>Life on the road</Eyebrow>
+            <Title className="mt-4">
+              Roads that <span className="dh-accent">stay with you</span>
+            </Title>
+          </div>
+        </Reveal>
+
+        <div className="grid auto-rows-[170px] grid-cols-2 gap-3 sm:auto-rows-[210px] md:auto-rows-[230px] md:grid-cols-4 md:gap-4">
+          {storyGallery.map((item, i) => (
+            <Reveal
+              key={item.label}
+              from="zoom"
+              delay={i * 90}
+              className={`group relative overflow-hidden rounded-2xl bg-[#3c5461] ${spans[i]}`}
+            >
+              <img
+                src={item.image}
+                alt={item.label}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition duration-[1400ms] ease-out group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-70 transition group-hover:opacity-100" />
+              <span className="dh-display absolute bottom-4 left-4 right-4 translate-y-3 text-base uppercase tracking-[0.08em] text-white opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                {item.label}
+              </span>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// The people on the ride
+function Crew() {
+  return (
+    <section className="bg-[var(--dh-bg)] py-24 md:py-32">
+      <div className={`${wrap} grid items-center gap-16 lg:grid-cols-2`}>
+        <Reveal from="left" className="relative mx-auto w-full max-w-xl">
+          <div className="absolute -inset-4 translate-x-4 translate-y-4 rounded-[2rem] border-2 border-[var(--dh-accent)]/50" />
+          <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#3c5461] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)]">
+            <img
+              src={IMG.first}
+              alt="Vinod briefing the group at dawn"
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+          </div>
+
+          {/* spinning badge */}
+          <div className="absolute -bottom-8 -right-4 sm:-right-10">
+            <span className="dh-ring absolute inset-0 rounded-full border-2 border-[#e0974f]" />
+            <div className="dh-floaty relative flex h-36 w-36 flex-col items-center justify-center rounded-full bg-[#e0974f] text-center text-[#10181c] shadow-2xl sm:h-44 sm:w-44">
+              <span className="dh-display text-xs font-semibold uppercase tracking-[0.25em]">Riding since</span>
+              <span className="dh-display text-5xl font-bold leading-none sm:text-6xl">1994</span>
+              <span className="dh-display text-xs font-semibold uppercase tracking-[0.2em]">and still exploring</span>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal from="right">
+          <Eyebrow>The crew</Eyebrow>
+          <Title className="mt-4">
+            The people on the ride
+          </Title>
+          <div className="mt-8 space-y-5 text-[17px] leading-[1.75] text-[var(--dh-text)]">
+            <p>
+              We love riding, and we bring that love of the road to our tours.
+              Our team pioneered many of the iconic rides — Ladakh, Spiti, Goa
+              — and has been connected with the biker&apos;s scene in India
+              since it started in the nineties.
+            </p>
+            <p>
+              Thirty years on, the idea hasn&apos;t changed: a small group, a
+              lead rider who knows every village on the route, a mechanic with
+              the spares, and support vehicles so a pillion can rest or a rider
+              can sit out a hard day. We take care of every detail so you can
+              ride carefree.
+            </p>
+          </div>
+
+          <blockquote className="relative mt-10 rounded-2xl border border-[var(--dh-line)] bg-[var(--dh-surface)] p-7 pl-8 shadow-[0_24px_60px_-40px_rgba(0,0,0,0.6)]">
+            <span
+              aria-hidden="true"
+              className="dh-display absolute -top-5 left-6 text-7xl leading-none text-[var(--dh-accent)]"
+            >
+              “
+            </span>
+            <p className="text-lg italic leading-relaxed text-[var(--dh-text)]">
+              Due to Vinod&apos;s experience and his open and friendly nature,
+              we got connected to the land and its people in no time wherever
+              we went.
+            </p>
+            <cite className="dh-display mt-4 block text-sm not-italic uppercase tracking-[0.18em] text-[var(--dh-muted)]">
+              Neil, Germany — Ladakh tour
+            </cite>
+          </blockquote>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// The motorcycles + Why Royal Enfield + timeline
+function RoyalEnfield() {
+  return (
+    <section className="relative overflow-hidden bg-[#0a1014] pb-14 pt-24 text-white md:pb-16 md:pt-32">
+      <img
+        src={IMG.last}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover opacity-20"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a1014] via-[#0a1014]/80 to-[#0a1014]" />
+
+      <div className={`${wrap} relative`}>
+        <Reveal>
+          <Eyebrow light>The bikes</Eyebrow>
+          <Title light className="mt-4">
+            The motorcycles
+          </Title>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-white/75">
+            Royal Enfields, because that&apos;s what the roads were built around
+            and what every mechanic from Leh to Kanyakumari can fix.
+          </p>
+        </Reveal>
+
+        <div className="mt-14 grid gap-12 lg:grid-cols-5">
+          <Reveal className="lg:col-span-3">
+            <div className="group relative mb-8 aspect-[16/9] overflow-hidden rounded-3xl">
+              <img
+                src={IMG.last}
+                alt="Archive photo: Bullet 350 on a Himalayan road, 1990s"
+                loading="lazy"
+                className="h-full w-full object-cover grayscale transition duration-[1400ms] group-hover:scale-105 group-hover:grayscale-0"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            </div>
+
+            <Title as="h3" light size="sm">Why Royal Enfield</Title>
+            <div className="mt-5 space-y-5 text-[17px] leading-[1.8] text-white/80">
+              <p>
+                The Bullet came to India with the army. In the early 1950s the
+                Indian Army ordered several hundred 350cc Bullets for patrolling
+                the new border roads, and in 1955 Enfield of Redditch set up
+                assembly in Madras to supply them. The English company folded in
+                1970; the Indian one carried on, building essentially the same
+                motorcycle for the next fifty years. The bike was designed for
+                exactly these roads, and the roads in turn were ridden on
+                exactly this bike.
+              </p>
+              <p>
+                That history is why we ride them. For decades the Bullet was the
+                only motorcycle you could get fixed in a village in Ladakh, and
+                every mechanic from the Rohtang to the Konkan coast learned on
+                one. The engines make their power low down, where you need it
+                when the air thins above 4,000 m. The riding position is upright
+                and unhurried. And there is a plain pleasure in riding a
+                Himalayan road on the machine that was built for it.
+              </p>
+              <p>
+                The company has changed around the idea. Eicher took over in
+                1994 — the same year we led our first tour — and the bikes have
+                moved from the old cast-iron Bullet through the Classic of 2008
+                to the first purpose-built adventure bike, the Himalayan 411, in
+                2016, and now the liquid-cooled Himalayan 450. Lighter, more
+                reliable, far better on gravel, and still a Royal Enfield:
+                simple to fix, easy to live with, at home on a mountain road.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* timeline */}
+          <Reveal from="right" className="lg:col-span-2">
+            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-7 backdrop-blur-sm sm:p-9">
+              <span className="dh-display text-sm font-semibold uppercase tracking-[0.3em] text-[#e0974f]">
+                The story in dates
+              </span>
+              <ol className="relative mt-8 space-y-7 border-l border-white/15 pl-8">
+                {timeline.map((item, i) => (
+                  <Reveal as="li" key={item.year} delay={i * 80} from="right" className="relative">
+                    <span className="absolute -left-[39px] top-1.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#e0974f] ring-4 ring-[#0a1014]" />
+                    <span className="dh-display text-2xl font-semibold tracking-wide text-[#f3d9a8]">
+                      {item.year}
+                    </span>
+                    <p className="mt-1 text-[15px] leading-relaxed text-white/75">{item.text}</p>
+                  </Reveal>
+                ))}
+              </ol>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// BIKE GALLERY: auto-changes every 5 seconds, tap the bike to zoom
 function BikeGallery() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -187,15 +739,6 @@ function BikeGallery() {
     goTo(target, target > index ? 1 : -1);
   };
 
-  const toggleZoom = () => setZoomed((value) => !value);
-
-  const handleZoomKey = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      toggleZoom();
-    }
-  };
-
   // Preload all bike images so slides change without flicker.
   useEffect(() => {
     bikes.forEach((item) => {
@@ -217,121 +760,149 @@ function BikeGallery() {
     else goPrev();
   };
 
-  const slideClass = direction === 1 ? styles.slideNext : styles.slidePrev;
+  const slide = direction === 1 ? "dh-slide-next" : "dh-slide-prev";
 
   return (
     <section
-      className={`${styles.bikeGallery} ${paused ? styles.isPaused : ""}`}
       id="bike-gallery"
       aria-labelledby="bike-gallery-title"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden bg-gradient-to-b from-[#0a1014] via-[#10202a] to-[#0a1014] pb-24 pt-6 text-white md:pb-32 md:pt-8"
     >
-      <div className={styles.bikeGalleryInner}>
-        <div className={styles.bikeGalleryHeading}>
-          <span className={styles.bikeGalleryEyebrow}>
-            <span />
-            OUR RIDES
-          </span>
-          <h2 id="bike-gallery-title">
-            Choose your <em>machine.</em>
-          </h2>
-        </div>
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_50%_at_75%_45%,rgba(224,151,79,0.2),transparent_70%)]"
+      />
 
-        <div className={styles.bikeGalleryGrid}>
+      <div className={`${wrap} relative`}>
+        <Reveal>
+          <Eyebrow light>Our rides</Eyebrow>
+          <Title id="bike-gallery-title" light className="mt-4">
+            Choose your <span className="dh-accent">machine.</span>
+          </Title>
+        </Reveal>
+
+        <div className="mt-14 grid items-center gap-10 lg:grid-cols-2">
           {/* LEFT: description */}
-          <div
-            className={`${styles.bikeGalleryCopy} ${
-              zoomed ? styles.isZoomed : ""
-            }`}
-            role="button"
-            tabIndex={0}
-            aria-pressed={zoomed}
-            aria-label={`${bike.name} details. Tap to ${
-              zoomed ? "zoom out" : "zoom in"
-            }`}
-            onClick={toggleZoom}
-            onKeyDown={handleZoomKey}
-            aria-live="polite"
-          >
-            <div className={`${styles.bikeGalleryCopyInner} ${slideClass}`} key={index}>
-              <span className={styles.bikeGalleryCount}>
+          <div aria-live="polite" className="order-2 lg:order-1">
+            <div key={index} className={slide}>
+              <span className="dh-display text-xl tracking-[0.2em] text-[#e0974f]">
                 {String(index + 1).padStart(2, "0")}
-                <b> / {String(bikes.length).padStart(2, "0")}</b>
+                <b className="font-medium text-white/40"> / {String(bikes.length).padStart(2, "0")}</b>
               </span>
+              <Title as="h3" light size="md" className="mt-3">{bike.name}</Title>
+              <p className="mt-3 text-xl italic text-[#f3d9a8]">{bike.tagline}</p>
+              <p className="mt-6 max-w-xl text-[17px] leading-[1.8] text-white/75">{bike.description}</p>
 
-              <h3 className={styles.bikeGalleryName}>{bike.name}</h3>
-              <p className={styles.bikeGalleryTagline}>{bike.tagline}</p>
-              <p className={styles.bikeGalleryText}>{bike.description}</p>
-
-              <ul className={styles.bikeGallerySpecs}>
+              <ul className="mt-8 grid max-w-xl grid-cols-3 gap-3">
                 {bike.specs.map((spec) => (
-                  <li key={spec.label}>
-                    <strong>{spec.value}</strong>
-                    <span>{spec.label}</span>
+                  <li
+                    key={spec.label}
+                    className="rounded-2xl border border-white/10 bg-white/[0.05] p-4 backdrop-blur-sm"
+                  >
+                    <strong className="dh-display block text-2xl font-semibold text-white sm:text-3xl">
+                      {spec.value}
+                    </strong>
+                    <span className="dh-display text-xs uppercase tracking-[0.2em] text-white/50">
+                      {spec.label}
+                    </span>
                   </li>
                 ))}
               </ul>
             </div>
-
-            <span className={styles.bikeGalleryHint}>
-              <ZoomIn size={15} aria-hidden="true" />
-              {zoomed ? "Tap to zoom out" : "Tap to zoom"}
-            </span>
           </div>
 
           {/* RIGHT: photo */}
           <div
-            className={styles.bikeGalleryStage}
+            className="relative order-1 lg:order-2"
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            <div
-              className={styles.bikeGalleryPhoto}
-              onClick={toggleZoom}
+            <span
               aria-hidden="true"
+              className="dh-display pointer-events-none absolute -top-6 right-0 max-w-full select-none whitespace-nowrap text-[18vw] font-bold uppercase leading-none text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.1)] lg:text-[8rem]"
             >
-              <img
-                key={index}
-                className={`${styles.bikeGalleryImg} ${slideClass}`}
-                src={bike.image}
-                alt=""
-                draggable="false"
-              />
-              <span className={styles.bikeGalleryGround} />
-            </div>
+              {bike.tab}
+            </span>
 
-            <div className={styles.bikeGalleryArrows}>
-              <button type="button" aria-label="Previous bike" onClick={goPrev}>
-                <ArrowLeft size={19} aria-hidden="true" />
-              </button>
-              <button type="button" aria-label="Next bike" onClick={goNext}>
-                <ArrowRight size={19} aria-hidden="true" />
-              </button>
+            <button
+              type="button"
+              onClick={() => setZoomed((value) => !value)}
+              aria-pressed={zoomed}
+              aria-label={`${bike.name}. ${zoomed ? "Zoom out" : "Zoom in"}`}
+              className="relative flex min-h-[280px] w-full cursor-zoom-in items-center justify-center sm:min-h-[400px]"
+            >
+              <div className={zoomed ? "scale-125 transition-transform duration-700" : "dh-floaty"}>
+                <img
+                  key={index}
+                  src={bike.image}
+                  alt=""
+                  draggable="false"
+                  className={`${slide} relative z-10 max-h-[260px] w-full object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.65)] sm:max-h-[400px]`}
+                />
+              </div>
+              <span className="absolute bottom-0 left-1/2 h-6 w-3/4 -translate-x-1/2 rounded-[100%] bg-black/50 blur-xl" />
+            </button>
+
+            <div className="mt-6 flex items-center justify-between">
+              <span className="dh-display inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-white/50">
+                <ZoomIn size={15} aria-hidden="true" />
+                {zoomed ? "Tap to zoom out" : "Tap to zoom"}
+              </span>
+              <div className="flex gap-3">
+                <button
+                  type="button"
+                  aria-label="Previous bike"
+                  onClick={goPrev}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition hover:border-[#e0974f] hover:bg-[#e0974f] hover:text-[#10181c]"
+                >
+                  <ArrowLeft size={19} aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next bike"
+                  onClick={goNext}
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 transition hover:border-[#e0974f] hover:bg-[#e0974f] hover:text-[#10181c]"
+                >
+                  <ArrowRight size={19} aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Tabs with 5-second progress */}
-        <div className={styles.bikeGalleryTabs} role="tablist" aria-label="Choose a bike">
+        <div
+          role="tablist"
+          aria-label="Choose a bike"
+          className="mt-14 grid grid-cols-2 gap-x-4 gap-y-6 md:grid-cols-4"
+        >
           {bikes.map((item, i) => (
             <button
               type="button"
               role="tab"
               aria-selected={i === index}
               key={item.name}
-              className={`${styles.bikeGalleryTab} ${
-                i === index ? styles.tabActive : ""
-              }`}
               onClick={() => selectTab(i)}
+              className="group text-left"
             >
-              <span className={styles.bikeGalleryTabName}>{item.tab}</span>
-              <span className={styles.bikeGalleryTrack}>
+              <span
+                className={`dh-display block text-lg font-semibold uppercase tracking-[0.12em] transition ${
+                  i === index ? "text-[#e0974f]" : "text-white/50 group-hover:text-white"
+                }`}
+              >
+                {item.tab}
+              </span>
+              <span className="relative mt-3 block h-[3px] w-full overflow-hidden rounded-full bg-white/15">
                 {i === index && (
                   <span
                     key={`fill-${index}`}
-                    className={styles.bikeGalleryFill}
-                    style={{ animationDuration: `${BIKE_SLIDE_MS}ms` }}
+                    className="dh-fill absolute inset-y-0 left-0 bg-[#e0974f]"
+                    style={{
+                      animationDuration: `${BIKE_SLIDE_MS}ms`,
+                      animationPlayState: paused ? "paused" : "running",
+                    }}
                     onAnimationEnd={goNext}
                   />
                 )}
@@ -340,358 +911,393 @@ function BikeGallery() {
           ))}
         </div>
 
-        <div className={styles.bikeGalleryFooter}>
-          <p>Every tour includes a Royal Enfield, fuel and a mechanic on the road.</p>
-          <Link to="/tours" className={styles.bikeGalleryLink}>
-            SEE TOURS
-            <ArrowUpRight size={18} aria-hidden="true" />
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-8">
+          <p className="max-w-xl text-white/70">
+            Every tour includes a Royal Enfield, fuel and a mechanic on the road.
+          </p>
+          <Link
+            to="/tours"
+            className="dh-display group inline-flex items-center gap-2 text-lg font-semibold uppercase tracking-[0.15em] text-[#e0974f]"
+          >
+            See tours
+            <ArrowUpRight
+              size={18}
+              aria-hidden="true"
+              className="transition group-hover:-translate-y-1 group-hover:translate-x-1"
+            />
           </Link>
         </div>
       </div>
     </section>
   );
 }
-// What the tour price covers (based on the Little Tibet tour page; check each tour for exact details).
-const included = [
-  {
-    title: "Royal Enfield motorcycle",
-    description:
-      "Your bike for the whole journey, ready to ride and fully insured.",
-    points: ["Comprehensive insurance", "Touring gear provided"],
-    icon: Gauge,
-  },
-  {
-    title: "Fuel and oil",
-    description:
-      "Every litre of fuel and oil is covered, so you never budget at the pump.",
-    points: ["All fuel", "All engine oil"],
-    icon: Fuel,
-  },
-  {
-    title: "Spares and mechanic",
-    description:
-      "Replacement parts are included, with a professional mechanic riding along.",
-    points: ["All replacement parts", "Mechanic on every tour"],
-    icon: Wrench,
-  },
-  {
-    title: "Support jeep",
-    description:
-      "Ride light. Your luggage travels in the support vehicle behind you.",
-    points: ["Baggage carried for you", "Reserved seats for pillions"],
-    icon: Truck,
-  },
-  {
-    title: "Handpicked hotels",
-    description:
-      "Comfortable stays chosen for their location and warmth, shared between two riders.",
-    points: ["Double accommodation", "En-suite shower and WC"],
-    icon: BedDouble,
-  },
-  {
-    title: "All your meals",
-    description:
-      "Breakfast, lunch and dinner from the first morning to the last, with drinks on the table.",
-    points: ["Breakfast, lunch and dinner", "Non-alcoholic beverages"],
-    icon: Utensils,
-  },
-];
 
-// Counts up from 0 once `active` becomes true. Respects reduced-motion settings.
-function CountUp({ to, suffix = "", active }) {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!active) return undefined;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-
-    if (prefersReducedMotion || to === 0) {
-      setValue(to);
-      return undefined;
-    }
-
-    let frame;
-    const duration = 1600;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(to * eased));
-      if (progress < 1) frame = window.requestAnimationFrame(tick);
-    };
-
-    frame = window.requestAnimationFrame(tick);
-    return () => window.cancelAnimationFrame(frame);
-  }, [active, to]);
-
+// Support vehicles
+function SupportVehicles() {
   return (
-    <>
-      {value}
-      {suffix}
-    </>
-  );
-}
-
-// WHAT'S INCLUDED — animated all-inclusive section
-function WhatsIncluded() {
-  const sectionRef = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  // Start all animations once the section scrolls into view.
-  useEffect(() => {
-    const node = sectionRef.current;
-    if (!node) return undefined;
-
-    if (!("IntersectionObserver" in window)) {
-      setVisible(true);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.18 }
-    );
-
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, []);
-
-  // Moves the warm spotlight inside a card to follow the cursor.
-  const handleMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
-
-  return (
-    <section
-      ref={sectionRef}
-      className={`${styles.included} ${visible ? styles.isVisible : ""}`}
-      id="whats-included"
-      aria-labelledby="included-title"
-    >
-      <svg
-        className={styles.includedRoute}
-        viewBox="0 0 1440 640"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-      >
-        <path d="M-40 470 C 160 330, 280 590, 480 450 S 780 280, 1000 420 S 1260 580, 1480 380" />
-        <path d="M-40 560 C 200 470, 360 640, 600 540 S 900 400, 1120 520 S 1340 620, 1480 520" />
-      </svg>
-
-      <div className={styles.includedInner}>
-        <div className={styles.includedHeader}>
-          <div>
-            <span className={styles.includedLabel}>What&apos;s included</span>
-            <h2 className={styles.includedTitle} id="included-title">
-              All-inclusive.
-              <span>Just bring yourself.</span>
-            </h2>
-          </div>
-
-          <p className={styles.includedLead}>
-            One tour price covers the bike, the fuel, the spares, the hotels
-            and every meal. Pack your bag, show up, and leave the logistics to
-            us.
+    <section className="bg-[var(--dh-bg)] py-24 md:py-32">
+      <div className={`${wrap} grid items-center gap-16 lg:grid-cols-2`}>
+        <Reveal from="left">
+          <Eyebrow>On the road</Eyebrow>
+          <Title className="mt-4">
+            Support vehicles
+          </Title>
+          <p className="mt-8 max-w-xl text-[17px] leading-[1.8] text-[var(--dh-text)]">
+            Support vehicles ride behind the group every day with the mechanic,
+            spares, tools, luggage, first aid and oxygen. They carry seats for
+            pillions who&apos;d rather sit out a pass, and for any rider
+            who&apos;s had enough for the day. Nobody is left to limp.
           </p>
-        </div>
 
-        <div className={styles.includedGrid}>
-          {included.map((item, index) => {
-            const Icon = item.icon;
-
-            return (
-              <article
-                className={styles.includedCard}
-                key={item.title}
-                style={{ "--i": index }}
-                onMouseMove={handleMove}
-              >
-                <div className={styles.includedIcon}>
-                  <Icon size={24} strokeWidth={1.7} aria-hidden="true" />
-                </div>
-
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-
-                <ul className={styles.includedPoints}>
-                  {item.points.map((point, pointIndex) => (
-                    <li key={point} style={{ "--p": pointIndex }}>
-                      <svg
-                        className={styles.includedTick}
-                        viewBox="0 0 20 20"
-                        aria-hidden="true"
-                      >
-                        <circle cx="10" cy="10" r="9" />
-                        <path d="M5.8 10.4l2.9 2.9 5.6-6" />
-                      </svg>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className={styles.includedBottom}>
-          <ul className={styles.includedStats}>
-            <li>
-              <strong>
-                <CountUp to={30} suffix="+" active={visible} />
-              </strong>
-              <span>Years on Himalayan roads</span>
-            </li>
-            <li>
-              <strong>
-                <CountUp to={14} active={visible} />
-              </strong>
-              <span>Riders at most in a group</span>
-            </li>
-            <li>
-              <strong>
-                <CountUp to={6} active={visible} />
-              </strong>
-              <span>Essentials covered in your price</span>
-            </li>
+          <ul className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-3">
+            {supportItems.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <Reveal as="li" key={item.label} delay={i * 70} from="zoom">
+                  <div className="group flex items-center gap-3 rounded-2xl border border-[var(--dh-line)] bg-[var(--dh-surface)] px-4 py-4 transition duration-300 hover:-translate-y-1 hover:border-[var(--dh-accent)]">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--dh-accent)]/15 text-[var(--dh-accent)] transition group-hover:bg-[var(--dh-accent)] group-hover:text-white">
+                      <Icon size={20} strokeWidth={1.8} aria-hidden="true" />
+                    </span>
+                    <span className="dh-display text-lg font-semibold uppercase tracking-[0.08em] text-[var(--dh-text)]">
+                      {item.label}
+                    </span>
+                  </div>
+                </Reveal>
+              );
+            })}
           </ul>
+        </Reveal>
 
-          <div className={styles.includedActions}>
-            <Link to="/tours" className={styles.includedPrimary}>
-              See tour prices
-              <ArrowUpRight size={18} aria-hidden="true" />
-            </Link>
-            <Link to="/contact" className={styles.includedGhost}>
-              Ask us anything
-            </Link>
+        <Reveal from="right" className="relative">
+          <div className="group relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-[#3c5461] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.7)]">
+            <img
+              src={IMG.heaven}
+              alt="Support vehicles and mechanic, Tanglang La"
+              loading="lazy"
+              className="h-full w-full object-cover transition duration-[1400ms] group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
-        </div>
-
-        <p className={styles.includedNote}>
-          Inclusions shown are based on our guided tours and can vary by tour.
-          Please check each tour page for the full details.
-        </p>
+          <div className="dh-floaty absolute -bottom-6 left-6 rounded-2xl bg-[var(--dh-surface)] px-6 py-4 shadow-2xl ring-1 ring-[var(--dh-line)] sm:left-10">
+            <span className="dh-display block text-sm uppercase tracking-[0.2em] text-[var(--dh-muted)]">
+              Nobody is left to
+            </span>
+            <span className="dh-display text-3xl font-semibold uppercase text-[var(--dh-accent)]">limp</span>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
-export default function Home() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
+// From riders who came back — two reviews at a time
+function RiderStories() {
+  const [active, setActive] = useState(0);
 
-  // Demo content: replace these sample reviews/photos with real, approved customer stories.
-  const testimonials = [
-    {
-      name: "Bob Van Aert, ",
-      location: " Belgium",
-      tour: "Ladakh Expedition",
-      image: "/images/review/Bob Van Aert, Belgium.avif",
-      review: "The Little Tibet tour is a stunning journey where every turn reveals stunning vistas of formidable glaciers, picturesque mountains, deep gorges, and turquoise blue waters. Fantastic experience...with a very cool crew...recommended between the chaff!!!",
-    },
-    {
-      name: "Neil",
-      location: "Germany",
-      tour: "Spiti Valley Tour",
-      image: "/images/review/Neil, Germany.avif",
-      review: "Riding the tour from Ladakh, with my father and my German friends was an experience of a lifetime ! Unique monasteries, spectacular views, friendly people…and what a ride! Vinod and his team provided a very special tour.  Everything was very well organised and prepared. Due to Vinod’s experience and his very special open and friendly nature,  we got connected to the land and its people in no time wherever we went. For sure we all will take this experience along as a treasure for the years to come.",
-    },
-    {
-      name: "Thierry",
-      location: "Belgium",
-      tour: "Classic Ladakh Ride",
-      image: "/images/review/Thierry, Belgium.avif",
-      review: "It is unimaginable what Vinod and his crew did for us during this fabulous “Little Tibet” trip. After travelling India for many years, I thought it would be hard to impress me. I was wrong. Great bikes, great guiding, unbeatable food and accommodation and fantastic interaction with local people. I want more …",
-    },
-    {
-      name: "Alex and Katty",
-      location: "La Bourgogne",
-      tour: "Himalayan Discovery",
-      image: "/images/review/Alex and Katty, La Bourgogne, France.avif",
-      review: "What a motorcycle trip it was  through Goa and the south of India !! Every motorcyclist can only dream of this. Vinod and Nadia took us to incredible places which filled us with delight – even as experienced India travellers (we undertook a dozen individual trips earlier).",
-    },
-    {
-      name: "Bernie",
-      location: " Belgium",
-      tour: "High Mountain Routes",
-      image: "/images/review/Bernie, Belgium.avif",
-      review: "My experience was so amazing fantastic awesomeI have no words to explain itIm into adventure and like to take challenges I had the opportunity to ride with Vinod to Spiti Little Tibet It was all magic and Spirituality at the same time So close to mother earth all the time every night in comfortable places in beautiful nature On the way back riding over one of the most dangerous tracksin the world the ROHTANG Pass Wet to the bones defying the muddy misty Rohtang road that was fun Yeahh an absolute must to experience in a lifetime Ill be there for another trip promise",
-    },
-    {
-      name: "Didier Ravyts, ",
-      location: "Belgium",
-      tour: "Spiti Adventure",
-      image: "/images/review/Didier Ravyts, Belgium.avif",
-      review: "Everything felt personal and well considered, from the itinerary to the little breaks along the way. The landscapes were beautiful and the experience felt truly authentic.",
-    },
-    {
-      name: "Anders, Sweden",
-      location: "Sweden",
-      tour: "Ladakh Tour",
-      image: "/images/review/Anders, Sweden.avif",
-      review: "The perfect combination of riding, culture and breathtaking views. The crew knew the region exceptionally well and helped us enjoy the journey with confidence.",
-    },
-    {
-      name: "Chloe Martin",
-      location: "France",
-      tour: "Himalayan Adventure",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=360&h=360&q=85",
-      review: "I loved the feeling of being far away from everyday life. Each day brought a new view, a new road and another reason to be glad I booked this trip.",
-    },
-    {
-      name: "James Carter",
-      location: "New Zealand",
-      tour: "Top of the World Tour",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=360&h=360&q=85",
-      review: "A big adventure made easy by a professional team. The route was extraordinary, the logistics were reliable and the memories will stay with me for years.",
-    },
-    {
-      name: "Aisha Khan",
-      location: "United Arab Emirates",
-      tour: "Custom Himalayan Ride",
-      image: "https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?auto=format&fit=crop&w=360&h=360&q=85",
-      review: "The custom itinerary matched exactly what we hoped for. We got to explore at our own pace while knowing help was always nearby. I would recommend the experience to any adventure rider.",
-    },
-  ];
+  const visible = 2;
+  const maxIndex = testimonials.length - visible;
+  const pages = Math.ceil(testimonials.length / visible);
+  const currentPage = Math.floor(active / visible);
 
-  const visibleTestimonials = 2;
-  const maxTestimonialIndex = testimonials.length - visibleTestimonials;
-
-  // Automatically advance by two testimonials every 5 seconds and loop back to the start.
+  // Advance by two every 5 seconds and loop back to the start.
   useEffect(() => {
-    const autoSlide = window.setInterval(() => {
-      setActiveTestimonial((currentIndex) =>
-        currentIndex >= maxTestimonialIndex
-          ? 0
-          : Math.min(currentIndex + visibleTestimonials, maxTestimonialIndex)
+    const timer = window.setInterval(() => {
+      setActive((current) =>
+        current >= maxIndex ? 0 : Math.min(current + visible, maxIndex)
       );
     }, 5000);
+    return () => window.clearInterval(timer);
+  }, [maxIndex]);
 
-    return () => window.clearInterval(autoSlide);
-  }, [maxTestimonialIndex]);
+  const goTo = (index) => setActive(Math.max(0, Math.min(maxIndex, index)));
+  const scrollBy = (direction) => goTo(active + direction * visible);
 
-  const goToTestimonial = (index) => {
-    setActiveTestimonial(
-      Math.max(0, Math.min(maxTestimonialIndex, index))
-    );
-  };
-
-  const scrollTestimonials = (direction) => {
-    goToTestimonial(activeTestimonial + direction * visibleTestimonials);
-  };
+  const arrow =
+    "flex h-12 w-12 items-center justify-center rounded-full border border-[var(--dh-line)] bg-[var(--dh-surface)] text-[var(--dh-text)] transition hover:border-[var(--dh-accent)] hover:bg-[var(--dh-accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[var(--dh-line)] disabled:hover:bg-[var(--dh-surface)] disabled:hover:text-[var(--dh-text)]";
 
   return (
-    <div className="home-page">
-      {/* MAIN VIDEO HERO */}
+    <section
+      aria-labelledby="rider-stories-title"
+      className="relative overflow-hidden bg-[var(--dh-alt)] py-24 md:py-32"
+    >
+      <span
+        aria-hidden="true"
+        className="dh-display pointer-events-none absolute -right-6 top-4 select-none text-[28vw] font-bold leading-none text-[var(--dh-text)] opacity-[0.04]"
+      >
+        “
+      </span>
+
+      <div className={`${wrap} relative`}>
+        <Reveal className="flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <Eyebrow>Words from the road</Eyebrow>
+            <Title id="rider-stories-title" className="mt-4">
+              From riders
+              <br />
+              <span className="dh-accent">who came back</span>
+            </Title>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <span className="dh-display text-sm uppercase tracking-[0.2em] text-[var(--dh-muted)]">
+              Rider stories ·{" "}
+              {String(active + 1).padStart(2, "0")}–
+              {String(Math.min(active + visible, testimonials.length)).padStart(2, "0")}
+              <span className="opacity-60"> / {String(testimonials.length).padStart(2, "0")}</span>
+            </span>
+            <button
+              type="button"
+              aria-label="Previous testimonials"
+              onClick={() => scrollBy(-1)}
+              disabled={active === 0}
+              className={arrow}
+            >
+              <ArrowLeft size={19} aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              aria-label="Next testimonials"
+              onClick={() => scrollBy(1)}
+              disabled={active >= maxIndex}
+              className={arrow}
+            >
+              <ArrowRight size={19} aria-hidden="true" />
+            </button>
+          </div>
+        </Reveal>
+
+        <div key={active} aria-live="polite" className="mt-14 grid items-stretch gap-6 md:grid-cols-2">
+          {testimonials.slice(active, active + visible).map((person, i) => {
+            const d = i * 180;
+            return (
+              <article
+                key={person.name}
+                style={{ animationDelay: `${d}ms` }}
+                className="dh-fade-up group relative flex flex-col items-center rounded-3xl border border-[var(--dh-line)] bg-[var(--dh-surface)] px-7 pb-10 pt-14 text-center shadow-[0_30px_70px_-45px_rgba(0,0,0,0.6)] transition duration-500 hover:-translate-y-2 hover:border-[var(--dh-accent)] sm:px-10"
+              >
+                <span
+                  aria-hidden="true"
+                  className="dh-display absolute left-1/2 top-1 -translate-x-1/2 text-8xl leading-none text-[var(--dh-accent)] opacity-20"
+                >
+                  “
+                </span>
+
+                {/* centred photo with pulsing ring */}
+                <div className="relative">
+                  <span
+                    aria-hidden="true"
+                    className="dh-ring absolute inset-0 rounded-full border-2 border-[var(--dh-accent)]"
+                  />
+                  <img
+                    src={person.image}
+                    alt={`${person.name} portrait`}
+                    loading="lazy"
+                    style={{ animationDelay: `${d + 150}ms` }}
+                    className="dh-pop relative h-28 w-28 rounded-full object-cover ring-2 ring-[var(--dh-accent)] ring-offset-4 ring-offset-[var(--dh-surface)] transition duration-500 group-hover:scale-110"
+                  />
+                </div>
+
+                <Title
+                  as="h3"
+                  size="name"
+                  className="dh-fade-up mt-6"
+                  style={{ animationDelay: `${d + 350}ms` }}
+                >
+                  {person.name}
+                </Title>
+
+                <span
+                  className="dh-fade-up dh-display mt-1 text-sm uppercase tracking-[0.2em] text-[var(--dh-muted)]"
+                  style={{ animationDelay: `${d + 450}ms` }}
+                >
+                  CLASS OF ‘24 · {person.location.toUpperCase()}
+                </span>
+
+                <p
+                  className="dh-fade-up mt-6 max-w-prose flex-1 text-[16.5px] leading-[1.85] text-[var(--dh-text)]"
+                  style={{ animationDelay: `${d + 600}ms` }}
+                >
+                  {person.review}
+                </p>
+
+                <span
+                  className="dh-fade-up dh-display mt-7 inline-flex w-fit rounded-full bg-[var(--dh-accent)]/15 px-5 py-2 text-sm font-semibold uppercase tracking-[0.15em] text-[var(--dh-accent)] transition group-hover:bg-[var(--dh-accent)] group-hover:text-white"
+                  style={{ animationDelay: `${d + 800}ms` }}
+                >
+                  {person.tour}
+                </span>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 flex justify-center gap-2" aria-label="Choose testimonial page">
+          {Array.from({ length: pages }).map((_, index) => (
+            <button
+              type="button"
+              key={index}
+              aria-label={`Go to testimonial page ${index + 1}`}
+              aria-current={currentPage === index ? "true" : undefined}
+              onClick={() => goTo(Math.min(index * visible, maxIndex))}
+              className={`h-2.5 rounded-full transition-all duration-500 ${
+                currentPage === index
+                  ? "w-10 bg-[var(--dh-accent)]"
+                  : "w-2.5 bg-[var(--dh-line)] hover:bg-[var(--dh-muted)]"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// See upcoming tours button with an animated dashed route behind it
+function UpcomingCta() {
+  return (
+    <section className="relative overflow-hidden bg-[var(--dh-bg)] pb-24 md:pb-28">
+      {/* road with floating destination names */}
+      <Marquee />
+
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 1440 240"
+        preserveAspectRatio="none"
+        className="dh-route absolute inset-x-0 bottom-0 h-56 w-full text-[var(--dh-accent)] opacity-40"
+      >
+        <path
+          d="M-20 170 C 200 40, 360 250, 620 120 S 980 20, 1180 140 S 1380 210, 1470 90"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+      </svg>
+
+      <div className={`${wrap} relative pt-16 text-center md:pt-20`}>
+        <Reveal>
+          <Link to="/upcoming-tours" className={btnLake}>
+            See upcoming tours, dates and prices
+            <ArrowUpRight size={19} aria-hidden="true" />
+          </Link>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// Not just a ride — parallax background
+function Experience() {
+  const [ref, y] = useParallax(0.14);
+
+  return (
+    <section
+      ref={ref}
+      className="relative flex min-h-[80vh] items-center overflow-hidden bg-[#0a1014] py-24 text-white"
+    >
+      <img
+        src={IMG.last}
+        alt="A scenic mountain landscape"
+        loading="lazy"
+        style={{ transform: `translateY(${y}px) scale(1.2)` }}
+        className="absolute inset-0 h-full w-full object-cover will-change-transform"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a1014]/90 via-[#0a1014]/60 to-[#0a1014]/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a1014]/70 via-transparent to-transparent" />
+
+      <div className={`${wrap} relative grid items-end gap-12 lg:grid-cols-2`}>
+        <Reveal>
+          <Eyebrow light>Experience that matters</Eyebrow>
+          <Title light className="mt-5">
+            Not just a ride.
+            <br />
+            <span className="dh-accent">A lifetime of memories.</span>
+          </Title>
+          <p className="mt-8 max-w-xl text-lg leading-[1.8] text-white/80">
+            Every great adventure begins with a route worth exploring. Our
+            passion for mountain travel inspires journeys that bring together
+            incredible roads, unforgettable scenery and meaningful experiences.
+          </p>
+          <Link to="/about" className={`${btnPrimary} mt-10`}>
+            Get to know us
+            <ArrowUpRight size={19} aria-hidden="true" />
+          </Link>
+        </Reveal>
+
+        <Reveal from="right" className="hidden justify-self-end lg:block">
+          <div className="dh-floaty rounded-3xl border border-white/20 bg-white/10 px-10 py-8 text-center backdrop-blur-md">
+            <strong className="dh-display block text-8xl font-bold leading-none text-[#f3d9a8]">
+              1994
+            </strong>
+            <span className="dh-display mt-3 block max-w-[14rem] text-sm uppercase tracking-[0.25em] text-white/80">
+              The beginning of our journey
+            </span>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+// Custom tours band — last section of the page
+function CustomBand() {
+  return (
+    <section className="bg-[var(--dh-bg)] py-20 md:py-28">
+      <div className={wrap}>
+        <Reveal from="zoom" className="group relative flex min-h-[540px] items-end overflow-hidden rounded-[2rem] bg-[#3c5461] shadow-[0_50px_100px_-50px_rgba(0,0,0,0.8)]">
+          <img
+            src={IMG.top}
+            alt="A private group on an unmarked road — Zanskar or Kinnaur"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition duration-[2000ms] group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080e12]/85 via-[#080e12]/50 to-[#080e12]/10 max-sm:bg-gradient-to-b max-sm:from-[#080e12]/30 max-sm:to-[#080e12]/90" />
+
+          <Compass
+            aria-hidden="true"
+            size={120}
+            strokeWidth={1}
+            className="dh-spin-slow absolute right-8 top-8 hidden text-white/30 sm:block"
+          />
+
+          <div className="relative w-full p-7 text-white sm:p-12 lg:p-16">
+            <span className="dh-display inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-[#f3d9a8]">
+              <span className="h-px w-10 bg-current" />
+              Custom tours
+            </span>
+            <Title light className="mt-5 max-w-[16ch]">
+              Your group. Your dates. A route drawn for you.
+            </Title>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+              Riding clubs, families, a group of friends, a company offsite on
+              two wheels. Tell us who&apos;s riding and how long you have; we
+              chart the route, run the logistics, and ride it with you.
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link to="/custom-tours" className={btnLight}>
+                How custom tours work
+              </Link>
+              <Link to="/contact?tour=custom" className={btnGhost}>
+                Start planning
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ==================================================================
+   PAGE
+================================================================== */
+
+export default function Home() {
+  return (
+    <div className="home-page dh-page overflow-x-clip">
+      <ScrollProgress />
+
+      {/* MAIN VIDEO HERO (unchanged) */}
       <section
         className={styles.videoHero}
         aria-label="Discover Himalayas promotional video"
@@ -723,409 +1329,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* WHY TOUR WITH US */}
-      <section
-        className={styles.whyTour}
-        id="why-tour-with-us"
-        aria-labelledby="why-tour-title"
-      >
-        <div className={styles.whyTourInner}>
-          <div className={styles.whyTourTop}>
-            <div className={styles.whyTourCopy}>
-              <span className={styles.whyTourEyebrow}>
-                <span className={styles.eyebrowLine} />
-                DISCOVER HIMALAYAS · EST. 1994
-              </span>
-
-              <h2 className={styles.whyTourTitle} id="why-tour-title">
-                WHY TOUR
-                <br />
-                <span>WITH US?</span>
-              </h2>
-
-              <p className={styles.whyTourLead}>
-                We don&apos;t just organise rides.
-                <br />
-                <strong>We live for the road.</strong>
-              </p>
-
-              <p className={styles.whyTourDescription}>
-                We love riding and so we bring that love of the road to our
-                tours. With around 30 years of experience and uncountable
-                kilometres under our belt, we take care of every possible
-                detail so you can enjoy the ride carefree.
-              </p>
-
-              <p className={styles.whyTourDescription}>
-                Our team pioneered many iconic rides, including Ladakh,
-                Spiti and Goa, and has been connected with India&apos;s
-                biking scene since the nineties.
-              </p>
-
-              <p className={styles.whyTourDescription}>
-                Expect unmatched route knowledge, meticulous planning,
-                attention to safety and efficient logistical support.
-                Come ride with us and join a family of happy bikers.
-              </p>
-
-              <Link to="/about" className={styles.whyTourButton}>
-                DISCOVER OUR STORY
-                <ArrowUpRight size={19} aria-hidden="true" />
-              </Link>
-            </div>
-
-            <div className={styles.whyTourVisual}>
-              <div className={styles.whyTourImage}>
-                <img
-                  src="images/homepage/first.jpeg"
-                  alt="Dramatic Himalayan peaks and mountain scenery"
-                  loading="lazy"
-                />
-
-                <div className={styles.imageOverlay} />
-
-                <div className={styles.imageCaption}>
-                  <span>THE OPEN ROAD</span>
-                  <strong>Find your kind of freedom.</strong>
-                </div>
-              </div>
-
-              <div className={styles.experienceStamp}>
-                <span>RIDING SINCE</span>
-                <strong>1994</strong>
-                <span>AND STILL EXPLORING</span>
-              </div>
-
-              <div className={styles.whyTourDecor} aria-hidden="true">
-                DH<span>.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* BIKE GALLERY */}
+      <Intro />
+      <Gallery />
+      <Crew />
+      <RoyalEnfield />
       <BikeGallery />
-
-
-
-      {/* WHAT TO EXPECT ON THE TOUR — NEW SECTION */}
-      <section
-        className={styles.tourExpect}
-        id="what-to-expect"
-        aria-labelledby="tour-expect-title"
-      >
-        <div className={styles.tourExpectInner}>
-          <div className={styles.tourExpectHeading}>
-            <span className={styles.tourExpectEyebrow}>
-              <span />
-              THE DISCOVER HIMALAYAS EXPERIENCE
-            </span>
-
-            <h2 id="tour-expect-title">
-              What to Expect
-              <br />
-              <span>on the Tour.</span>
-            </h2>
-
-            <p>
-              More than just a ride. Thoughtful planning, expert support and
-              the freedom to experience the Himalayas your way.
-            </p>
-          </div>
-
-          <div className={styles.tourExpectGrid}>
-            {tourHighlights.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <article
-                  className={styles.tourExpectCard}
-                  key={item.number}
-                >
-                  <div className={styles.tourExpectCardTop}>
-                    <div className={styles.tourExpectIcon}>
-                      <Icon size={25} strokeWidth={1.7} aria-hidden="true" />
-                    </div>
-                    <span className={styles.tourExpectNumber}>
-                      {item.number}
-                    </span>
-                  </div>
-
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-
-                  <div
-                    className={styles.tourExpectCardLine}
-                    aria-hidden="true"
-                  />
-                </article>
-              );
-            })}
-          </div>
-
-          <div className={styles.tourExpectBottom}>
-            <div>
-              <span className={styles.tourExpectBottomLabel}>
-                YOUR RIDE. YOUR STORY.
-              </span>
-              <h3>Ready for the road less travelled?</h3>
-            </div>
-
-            <Link to="/tours" className={styles.tourExpectButton}>
-              EXPLORE OUR TOURS
-              <ArrowUpRight size={19} aria-hidden="true" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* INTRODUCTION */}
-      <section className="intro-section">
-        <div className="section-label">BEYOND THE ORDINARY</div>
-
-        <h2>
-          The mountains are calling.
-          <br />
-          <span>Answer the call.</span>
-        </h2>
-
-        <p>
-          At Discover Himalayas, we create adventure journeys for riders who
-          want to experience more than just the road. Discover incredible
-          landscapes, local culture and the freedom of the open road.
-        </p>
-
-        <Link to="/about" className="text-link">
-          OUR STORY <span>→</span>
-        </Link>
-      </section>
-
-      {/* FEATURED TOURS */}
-      <section className="tour-section">
-        <div className="section-heading">
-          <div>
-            <div className="section-label">FIND YOUR NEXT ADVENTURE</div>
-            <h2>Journeys worth taking.</h2>
-          </div>
-
-          <Link to="/tours" className="text-link">
-            VIEW ALL TOURS <span>→</span>
-          </Link>
-        </div>
-
-        <div className="tour-grid">
-          {tours.map((tour, index) => (
-            <article className="tour-card" key={tour.slug}>
-              <Link
-                to={`/tours/${tour.slug}`}
-                className="tour-image-link"
-                aria-label={`Explore ${tour.title}`}
-              >
-                <img
-                  src={tour.image}
-                  alt={tour.title}
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
-                <span className="tour-number">0{index + 1}</span>
-              </Link>
-
-              <div className="tour-card-content">
-                <p className="tour-location">{tour.location}</p>
-
-                <h3>
-                  <Link to={`/tours/${tour.slug}`}>{tour.title}</Link>
-                </h3>
-
-                <p className="tour-description">{tour.description}</p>
-
-                <Link
-                  to={`/tours/${tour.slug}`}
-                  className="tour-link"
-                >
-                  DISCOVER THIS TOUR <span>↗</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* WHAT'S INCLUDED — NEW ANIMATED SECTION (middle of the page) */}
-      <WhatsIncluded />
-
-      {/* EXPERIENCE */}
-      <section className="experience-section">
-        <div className="experience-image">
-          <img
-            src="images/homepage/last.jpeg" 
-            alt="A scenic mountain landscape"
-            loading="lazy"
-          />
-
-          <div className="experience-badge">
-            <strong>1994</strong>
-            <span>THE BEGINNING OF OUR JOURNEY</span>
-          </div>
-        </div>
-
-        <div className="experience-content">
-          <div className="section-label">EXPERIENCE THAT MATTERS</div>
-
-          <h2>
-            Not just a ride.
-            <br />
-            <span>A lifetime of memories.</span>
-          </h2>
-
-          <p>
-            Every great adventure begins with a route worth exploring. Our
-            passion for mountain travel inspires journeys that bring together
-            incredible roads, unforgettable scenery and meaningful
-            experiences.
-          </p>
-
-          <Link to="/about" className="btn btn-primary">
-            GET TO KNOW US <span>↗</span>
-          </Link>
-        </div>
-      </section>
-
-      {/* WHY TRAVEL WITH US */}
-      <section className="reasons-section">
-        <div className="section-heading centered">
-          <div className="section-label">
-            THE DISCOVER HIMALAYAS DIFFERENCE
-          </div>
-          <h2>Made for the love of adventure.</h2>
-        </div>
-
-        <div className="reasons-grid">
-          {reasons.map((reason) => (
-            <article className="reason-card" key={reason.number}>
-              <span className="reason-number">{reason.number}</span>
-              <h3>{reason.title}</h3>
-              <p>{reason.text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* TESTIMONIALS — TWO VISIBLE AT A TIME */}
-      <section
-        className={styles.riderTestimonials}
-        aria-labelledby="rider-testimonials-title"
-      >
-        <div className={styles.riderTestimonialsInner}>
-          <div className={styles.riderTestimonialsHeading}>
-            <span className={styles.riderTestimonialsEyebrow}>
-              <span />
-              WORDS FROM THE ROAD
-              <span />
-            </span>
-            <h2 id="rider-testimonials-title">
-              What makes the journey
-              <br />
-              <span>unforgettable?</span>
-            </h2>
-          </div>
-
-          <div className={styles.riderTestimonialsToolbar}>
-            <span className={styles.riderTestimonialsCount}>
-              RIDER STORIES <b>·</b>{" "}
-              {String(activeTestimonial + 1).padStart(2, "0")}–{String(
-                Math.min(activeTestimonial + visibleTestimonials, testimonials.length)
-              ).padStart(2, "0")}{" "}
-              <span className={styles.riderTestimonialsCountTotal}>
-                / {String(testimonials.length).padStart(2, "0")}
-              </span>
-            </span>
-            <div className={styles.riderTestimonialsControls}>
-              <button
-                type="button"
-                aria-label="Previous testimonials"
-                onClick={() => scrollTestimonials(-1)}
-                disabled={activeTestimonial === 0}
-              >
-                <ArrowLeft size={19} aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next testimonials"
-                onClick={() => scrollTestimonials(1)}
-                disabled={activeTestimonial >= maxTestimonialIndex}
-              >
-                <ArrowRight size={19} aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-
-          <div className={styles.riderTestimonialsGrid} aria-live="polite">
-            {testimonials
-              .slice(activeTestimonial, activeTestimonial + visibleTestimonials)
-              .map((person) => (
-                <article className={styles.riderTestimonial} key={person.name}>
-                  <div className={styles.riderTestimonialProfile}>
-                    <img src={person.image} alt={`${person.name} portrait`} loading="lazy" />
-                    <span className={styles.riderTestimonialImageTint} aria-hidden="true" />
-                  </div>
-                  <div className={styles.riderTestimonialContent}>
-                    <div className={styles.riderTestimonialPerson}>
-                      <h3>{person.name}</h3>
-                      <span>CLASS OF ‘24 · {person.location.toUpperCase()}</span>
-                    </div>
-                    <p>{person.review}</p>
-                    <span className={styles.riderTestimonialTour}>{person.tour}</span>
-                  </div>
-                </article>
-              ))}
-          </div>
-
-          <div className={styles.riderTestimonialsPagination} aria-label="Choose testimonial page">
-            {Array.from({ length: Math.ceil(testimonials.length / visibleTestimonials) }).map((_, index) => (
-              <button
-                type="button"
-                key={index}
-                aria-label={`Go to testimonial page ${index + 1}`}
-                aria-current={Math.floor(activeTestimonial / visibleTestimonials) === index ? "true" : undefined}
-                className={Math.floor(activeTestimonial / visibleTestimonials) === index ? styles.active : ""}
-                onClick={() => goToTestimonial(Math.min(index * visibleTestimonials, maxTestimonialIndex))}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CUSTOM TOUR CTA */}
-      <section className="custom-cta">
-        <div>
-          <div className="section-label">YOUR ADVENTURE, YOUR WAY</div>
-          <h2>Dream it. Ride it. Live it.</h2>
-
-          <p>
-            Have a route in mind? Let&apos;s discuss a journey shaped around
-            your interests and travel plans.
-          </p>
-        </div>
-
-        <Link to="/contact" className="btn btn-primary">
-          PLAN A CUSTOM TOUR <span>↗</span>
-        </Link>
-      </section>
-
-      {/* HOMEPAGE BOTTOM BANNER */}
-      <section
-        className="home-banner-section"
-        aria-label="Discover Himalayas banner"
-      >
-        <div className="home-banner-wrap">
-          <img
-            src="/images/himalayas-banner.png"
-            alt="Discover the beauty of the Himalayas"
-            className="home-banner-image"
-            loading="lazy"
-          />
-        </div>
-      </section>
+      <SupportVehicles />
+      <RiderStories />
+      <UpcomingCta />
+      <Experience />
+      <CustomBand />
     </div>
   );
 }
