@@ -831,7 +831,7 @@ function RoyalEnfield() {
           <Reveal className="lg:col-span-3">
             <div className="group relative mb-8 aspect-[16/9] overflow-hidden rounded-3xl">
               <img
-                src="public/images/bikes/RE350.png"
+                src="/images/bikes/RE350.png"
                 alt="Archive photo: Bullet 350 on a Himalayan road, 1990s"
                 loading="lazy"
                 className="h-full w-full object-cover grayscale transition duration-[1400ms] group-hover:scale-105 group-hover:grayscale-0"
@@ -1379,7 +1379,7 @@ function Experience() {
       className="relative flex min-h-[80vh] items-center overflow-hidden bg-[#0a1014] py-24 text-white"
     >
       <img
-        src="public/images/homepage/buttom.avif"
+        src="/images/homepage/buttom.avif"
         alt="A scenic mountain landscape"
         loading="lazy"
         style={{ transform: `translateY(${y}px) scale(1.2)` }}
